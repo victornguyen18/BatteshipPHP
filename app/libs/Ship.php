@@ -17,7 +17,7 @@ class Ship
     public static final $UNSET = -1;
     public static final $HORIZONTAL = 0;
     public static final $VERTICAL = 1;
-
+    // Constructor
     public function __construct($lengthInput)
     {
         $length = $lengthInput;
@@ -25,7 +25,7 @@ class Ship
         $col = -1;
         $direction = $UNSET;
     }
-
+    // Has the location been init
     public function isLocationSet()
     {
         if ($row == -1 || $col == -1)
@@ -33,7 +33,7 @@ class Ship
         else
             return true;
     }
-
+    // Has the direction been init
     public function isDirectionSet()
     {
         if ($direction == UNSET)
