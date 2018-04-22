@@ -8,6 +8,7 @@
  */
 class Ship
 {
+    private $name;
     private $row;
     private $col;
     private $length;
@@ -23,11 +24,28 @@ class Ship
      * @param $lengthInput
      */
     // Constructor
-    public function __construct($lengthInput){
+    public function __construct($lengthInput,$nameInput){
         $this->length = $lengthInput;
         $this->row = -1;
         $this->col = -1;
-        $this->direction = self::$UNSET;
+        $this->direction = staticx  ::$UNSET;
+        $this->name = $nameInput;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 
     // Has the location been init

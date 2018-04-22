@@ -8,13 +8,14 @@
 
 class View
 {
+    public $data;
     function __construct()
     {
     }
 
     public function render($name, $noInclude = false)
     {
-
+        extract($this->data);
         if ($noInclude == true){
             require 'app/sources/views/' . $name . '.php';
         }
@@ -23,5 +24,8 @@ class View
             require '../app/sources/views/' . $name . '.php';
             require '../app/sources/templates/partials/footer.php';
         }
+    }
+    function view($data=array(),$disable = false){
+        $this->data = $data;
     }
 }

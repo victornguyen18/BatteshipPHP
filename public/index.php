@@ -16,5 +16,10 @@ require '../app/libs/Session.php';
 
 require '../app/config/paths.php';
 require '../app/config/database.php';
+
+//Library of Game
+require '../app/libs/Batteship/Ship.php';
+require '../app/libs/Batteship/Location.php';
+require '../app/libs/Batteship/Grid.php';
 Session::init();
 $app = new App();

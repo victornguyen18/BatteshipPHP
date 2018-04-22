@@ -16,6 +16,13 @@ class HomepageController extends Controller
     function index(){
         $logged = Session::get('loggedIn');
         $this->view->js = array('js/deal.js', 'js/cart.js');
+        $grid = new Grid();
+        $grid   ->markMiss(1,2);
+        $temp = $grid->getGird();
+
+        $data = array();
+        $data['grid'] = $temp;
+        $this->view->view($data);
         $this->view->render('homepage/index');
     }
 
