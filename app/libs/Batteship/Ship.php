@@ -28,7 +28,7 @@ class Ship
         $this->length = $lengthInput;
         $this->row = -1;
         $this->col = -1;
-        $this->direction = staticx  ::$UNSET;
+        $this->direction = self::$UNSET;
         $this->name = $nameInput;
     }
 

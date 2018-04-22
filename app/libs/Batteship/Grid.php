@@ -77,6 +77,16 @@ class Grid
         return $this->grid[$row][$col];
     }
 
+    // Return the number of rows in the Grid
+    public function numRows(){
+        return self::$NUM_ROWS;
+    }
+
+    // Return the number of columns in the grid
+    public function numCols(){
+        return self::$NUM_COLS;
+    }
+
     //Player do not have any point on grid
     public function hasLost(){
         if ($this->points >= self::$COUNT_POINT)
@@ -85,7 +95,7 @@ class Grid
             return false;
     }
 
-    public function addShip($s){
+    public function addShip(Ship $s){
         $row = $s->getRow();
         $col = $s->getCol();
         $length = $s->getLength();

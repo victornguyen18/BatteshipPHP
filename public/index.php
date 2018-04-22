@@ -21,5 +21,6 @@ require '../app/config/database.php';
 require '../app/libs/Batteship/Ship.php';
 require '../app/libs/Batteship/Location.php';
 require '../app/libs/Batteship/Grid.php';
+require '../app/libs/Batteship/Player.php';
 Session::init();
 $app = new App();

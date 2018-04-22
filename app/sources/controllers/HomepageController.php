@@ -17,11 +17,12 @@ class HomepageController extends Controller
         $logged = Session::get('loggedIn');
         $this->view->js = array('js/deal.js', 'js/cart.js');
         $grid = new Grid();
-        $grid   ->markMiss(1,2);
-        $temp = $grid->getGird();
-
+        $player = new Player();
+        $grid->markMiss(1,2);
         $data = array();
-        $data['grid'] = $temp;
+        $data['grid'] = $grid->getGird();
+        $data['numRows']=$grid->numRows();
+        $data['numCols']=$grid->numCols();
         $this->view->view($data);
         $this->view->render('homepage/index');
     }
