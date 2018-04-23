@@ -9,7 +9,7 @@ class Player{
 
     private static $SHIP_LENGTHS = array(2, 2, 2, 2, 3, 3, 3, 4, 4, 5);
     private static $NUMBER_OF_SHIPS = 10;
-	public $ships;
+	public $ships = array();
     public $playerGrid;
     public $oppGrid;
 
@@ -38,7 +38,7 @@ class Player{
     }
 
     public function numOfShipsLeft(){
-        $counter = 5;
+        $counter = self::$NUMBER_OF_SHIPS;
         foreach ($this->ships as $s) {
             if ($s->isLocationSet() and $s->isDirectionSet())
                 $counter--;
