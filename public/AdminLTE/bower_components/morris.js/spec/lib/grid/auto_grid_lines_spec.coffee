@@ -1,4 +1,4 @@
-describe 'Morris.Grid#autoGridLines', ->
+describe 'Morris.GridController#autoGridLines', ->
 
   beforeEach ->
     @subject = Morris.Grid.prototype.autoGridLines

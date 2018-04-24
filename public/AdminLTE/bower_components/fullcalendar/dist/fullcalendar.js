@@ -3349,7 +3349,7 @@ var InteractiveDateComponent = /** @class */ (function (_super) {
             if (!segEl.is('.fc-helper')) {
                 var seg = segEl.data('fc-seg'); // grab segment data. put there by View::renderEventsPayload
                 if (seg && !_this.shouldIgnoreEventPointing()) {
-                    return handler.call(_this, seg, ev); // context will be the Grid
+                    return handler.call(_this, seg, ev); // context will be the GridController
                 }
             }
         });
@@ -6015,7 +6015,7 @@ var util_1 = __webpack_require__(4);
 var Mixin_1 = __webpack_require__(14);
 /*
 A set of rendering and date-related methods for a visual component comprised of one or more rows of day columns.
-Prerequisite: the object being mixed into needs to be a *Grid*
+Prerequisite: the object being mixed into needs to be a *GridController*
 */
 var DayTableMixin = /** @class */ (function (_super) {
     tslib_1.__extends(DayTableMixin, _super);
@@ -6810,7 +6810,7 @@ var DayGrid = /** @class */ (function (_super) {
     DayGrid.prototype.getIsDayNumbersVisible = function () {
         return this.rowCnt > 1;
     };
-    /* Grid Number Rendering
+    /* GridController Number Rendering
     ------------------------------------------------------------------------------------------------------------------*/
     DayGrid.prototype.renderNumberTrHtml = function (row) {
         return '' +
@@ -7839,8 +7839,8 @@ var Constraints = /** @class */ (function () {
     };
     // Conversion: eventDefs -> eventInstances -> eventRanges -> eventFootprints -> componentFootprints
     // ------------------------------------------------------------------------------------------------
-    // NOTE: this might seem like repetitive code with the Grid class, however, this code is related to
-    // constraints whereas the Grid code is related to rendering. Each approach might want to convert
+    // NOTE: this might seem like repetitive code with the GridController class, however, this code is related to
+    // constraints whereas the GridController code is related to rendering. Each approach might want to convert
     // eventRanges -> eventFootprints in a different way. Regardless, there are opportunities to make
     // this more DRY.
     /*
@@ -10755,7 +10755,7 @@ var EventResizing = /** @class */ (function (_super) {
         }
     };
     // Creates a listener that tracks the user as they resize an event segment.
-    // Generic enough to work with any type of Grid.
+    // Generic enough to work with any type of GridController.
     EventResizing.prototype.buildDragListener = function (seg, isStart) {
         var _this = this;
         var component = this.component;
@@ -10987,7 +10987,7 @@ var EventDragging = /** @class */ (function (_super) {
         return dragListener;
     };
     // Builds a listener that will track user-dragging on an event segment.
-    // Generic enough to work with any type of Grid.
+    // Generic enough to work with any type of GridController.
     // Has side effect of setting/unsetting `dragListener`
     EventDragging.prototype.buildDragListener = function (seg) {
         var _this = this;
@@ -12240,7 +12240,7 @@ var ListView = /** @class */ (function (_super) {
         this.contentEl = this.scroller.scrollEl; // shortcut
     };
     ListView.prototype.unrenderSkeleton = function () {
-        this.scroller.destroy(); // will remove the Grid too
+        this.scroller.destroy(); // will remove the GridController too
     };
     ListView.prototype.updateSize = function (totalHeight, isAuto, isResize) {
         this.scroller.setHeight(this.computeScrollerHeight(totalHeight));

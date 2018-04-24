@@ -7,3 +7,14 @@
         echo '<br>';
     }
 ?>
+
+<p id="col">COL</p>
+<p id="row">ROW</p>
+
+<form>
+    <input type="Button" value="Hit">
+</form>
+
+<script>
+
+</script>

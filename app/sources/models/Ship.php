@@ -6,7 +6,7 @@
  * Date: 19-Apr-18
  * Time: 10:50 AM
  */
-class Ship
+class Ship extends Model
 {
     private $name;
     private $row;
@@ -20,11 +20,12 @@ class Ship
     public static $VERTICAL = 1;
 
     /**
-     * Ship constructor.
+     * ShipController constructor.
      * @param $lengthInput
      */
     // Constructor
     public function __construct($lengthInput,$nameInput){
+        parent::__construct();
         $this->length = $lengthInput;
         $this->row = -1;
         $this->col = -1;
@@ -135,12 +136,12 @@ class Ship
                 return "VERTICAL";
     }
 
-    // toString value for this Ship
+    // toString value for this ShipController
     /**
      * @return string
      */
     public function toString(){
-            return 'Ship: ' . self::getRow() . ', ' + self::getCol() + ' with length ' + self::getLength() .
+            return 'ShipController: ' . self::getRow() . ', ' + self::getCol() + ' with length ' + self::getLength() .
                 ' and direction ' . self::directionToString();
     }
 

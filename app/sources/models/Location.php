@@ -1,11 +1,13 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: thang
  * Date: 22-Apr-18
  * Time: 01:38 AM
  */
-class Location{
+class Location extends Model
+{
 
     // Global Vars
     public static $UNGUESSED = 0;
@@ -18,17 +20,20 @@ class Location{
     private $lengthOfShip;
     private $directionOfShip;
 
-    // Location constructor.
-    public function __construct(){
-    // Set initial values
-    $this->status = 0;
-    $this->hasShip = false;
-    $this->lengthOfShip = -1;
-    $this->directionOfShip = -1;
+    // LocationController constructor.
+    public function __construct()
+    {
+        parent::__construct();
+        // Set initial values
+        $this->status = 0;
+        $this->hasShip = false;
+        $this->lengthOfShip = -1;
+        $this->directionOfShip = -1;
     }
 
-    // Was this Location a hit?
-    public function checkHit(){
+    // Was this LocationController a hit?
+    public function checkHit()
+    {
         if ($this->status == self::$HIT)
             return true;
         else
@@ -36,7 +41,8 @@ class Location{
     }
 
     // Was this location a miss?
-    public function checkMiss(){
+    public function checkMiss()
+    {
         if ($this->status == self::$MISSED)
             return true;
         else
@@ -44,7 +50,8 @@ class Location{
     }
 
     // Was this location unguessed?
-    public function isUnguessed(){
+    public function isUnguessed()
+    {
         if ($this->status == self::$UNGUESSED)
             return true;
         else
@@ -52,44 +59,53 @@ class Location{
     }
 
     // Mark this location a hit.
-    public function markHit(){
+    public function markHit()
+    {
         self::setStatus(self::$HIT);
     }
 
     // Mark this location a miss.
-    public function markMiss(){
+    public function markMiss()
+    {
         self::setStatus(self::$MISSED);
     }
 
     // Return whether or not this location has a ship.
-    public function hasShip(){
+    public function hasShip()
+    {
         return $this->hasShip;
     }
 
     // Set the value of whether this location has a ship.
-    public function setShip($val){
+    public function setShip($val)
+    {
         $this->hasShip = $val;
     }
 
-    // Set the status of this Location.
-    public function setStatus($status){
+    // Set the status of this LocationController.
+    public function setStatus($status)
+    {
         $this->status = $status;
     }
 
-    // Get the status of this Location.
-    public function getStatus(){
+    // Get the status of this LocationController.
+    public function getStatus()
+    {
         return $this->status;
     }
 
-    public function getLengthOfShip(){
+    public function getLengthOfShip()
+    {
         return $this->lengthOfShip;
     }
 
-    public function setLengthOfShip($val){
+    public function setLengthOfShip($val)
+    {
         $this->lengthOfShip = $val;
     }
 
-    public function getDirectionOfShip(){
+    public function getDirectionOfShip()
+    {
         return $this->directionOfShip;
     }
 

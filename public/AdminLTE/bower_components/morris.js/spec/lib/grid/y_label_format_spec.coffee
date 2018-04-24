@@ -1,4 +1,4 @@
-describe 'Morris.Grid#yLabelFormat', ->
+describe 'Morris.GridController#yLabelFormat', ->
 
   it 'should use custom formatter for y labels', ->
     formatter = (label) ->

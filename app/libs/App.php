@@ -50,7 +50,7 @@ class App
         }
     }
 }
-    function error($furl){
+    function error(){
         require '../app/sources/controllers/ErrormsgController.php';
         $controller = new ErrormsgController();
         $controller->index();
