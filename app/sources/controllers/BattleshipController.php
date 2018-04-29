@@ -6,7 +6,7 @@
  * Time: 12:07 AM
  */
 
-class Battleship
+class BattleshipController extends Controller
 {
     public $Player;
     public $Computer;
@@ -31,9 +31,10 @@ class Battleship
     private function setupComputer(Player $p) {
 		$counter = 1;
 		$normCounter = 0;
+		// infinitive loop
         while ($p->numOfShipsLeft()>0){
             foreach($p->ships as $s){
-                echo $s->getName();
+                echo $s->getName() . "<br/>";
             }
         $normCounter++;
         $counter++;

@@ -36,10 +36,17 @@ class Grid extends Model
      */
     public function markMiss($row, $col)
     {
-        echo "<br/>Hello i'm here<br/>";
+//        echo "<br/>Hello i'm in Grid/markMiss<br/>";
         $this->grid[$row][$col]->markMiss();
-        print_r($this->grid[$row][$col]);
+//        print_r($this->grid[$row][$col]);
 
+    }
+    public function markHit($row, $col)
+    {
+//        echo "<br/>Hello i'm in Grid/markHit<br/>";
+        $this->grid[$row][$col]->markHit();
+        $this->points++;
+//        print_r($this->grid[$row][$col]);
     }
 
     // Set the status of this location object.
@@ -82,7 +89,7 @@ class Grid extends Model
     // Return whether or not there is a ship here
     public function hasShip($row, $col)
     {
-        return $this->grid[row][col]->hasShip();
+        return $this->grid[$row][$col]->hasShip();
     }
 
     // Get the Location object at this row and column position
@@ -124,13 +131,13 @@ class Grid extends Model
         // 0 - hor; 1 - ver
         if ($dir == 0) { // Horizontal
             for ($i = $col; $i < $col + $length; $i++) {
-                $this->grid[$row][$i]->setShip(true); //this location has a ship
+                $this->grid[$row][$i]->setShip(true, $s); //this location has a ship
                 $this->grid[$row][$i]->setLengthOfShip($length); // the length of the ship
                 $this->grid[$row][$i]->setDirectionOfShip($dir); // the direction of the ship
             }
         } else if ($dir == 1) { // Vertical
             for ($i = $row; $i < $row + $length; $i++) {
-                $this->grid[$i][$col]->setShip(true);
+                $this->grid[$i][$col]->setShip(true, $s);
                 $this->grid[$i][$col]->setLengthOfShip($length);
                 $this->grid[$i][$col]->setDirectionOfShip($dir);
             }
@@ -138,7 +145,7 @@ class Grid extends Model
     }
 
 
-    public function getGird()
+    public function getGrid()
     {
         return $this->grid;
     }

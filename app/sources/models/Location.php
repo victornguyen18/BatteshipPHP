@@ -16,6 +16,7 @@ class Location extends Model
 
     // Instance Variables
     private $hasShip;
+    private $ship;
     private $status;
     private $lengthOfShip;
     private $directionOfShip;
@@ -53,15 +54,19 @@ class Location extends Model
     public function isUnguessed()
     {
         if ($this->status == self::$UNGUESSED)
+        {
             return true;
-        else
+        }
+        else{
             return false;
+        }
     }
 
     // Mark this location a hit.
     public function markHit()
     {
         self::setStatus(self::$HIT);
+        $this->ship->isHit();
     }
 
     // Mark this location a miss.
@@ -77,8 +82,9 @@ class Location extends Model
     }
 
     // Set the value of whether this location has a ship.
-    public function setShip($val)
+    public function setShip($val, Ship $s)
     {
+        $this->ship = $s;
         $this->hasShip = $val;
     }
 
@@ -92,6 +98,10 @@ class Location extends Model
     public function getStatus()
     {
         return $this->status;
+    }
+    public function getShip()
+    {
+        return $this->ship;
     }
 
     public function getLengthOfShip()

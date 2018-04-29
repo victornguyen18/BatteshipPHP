@@ -13,40 +13,41 @@ class App
     $url = isset($_GET['url']) ? $_GET['url'] : null;
     $url = rtrim($url, '/');
     $url = explode('/', $url);
-
     if(empty($url[0])){
         require '../app/sources/controllers/HomepageController.php';
         $controller = new HomepageController();
         $controller->index();
         return false;
     }
-    $file = '../app/sources/controllers/' . ucfirst($url[0]) . 'Controller.php';
-    if (file_exists($file)) {
-        require $file;
-    } else {
-        $this->error($url[0]);
-        return false;
-    }
-    $nameController = ucfirst($url[0]).'Controller';
-    $controller = new $nameController();
-    $controller->loadModel($url[0]);
-    if (isset($url[2])) {
-        if (method_exists($controller,$url[1])) {
-            $controller->{$url[1]}($url[2]);
-        } else{
+    if($url[0] != "Grid" and $url[0] != "Location" and $url[0] != "Player" and $url[0] != "Ship") {
+        $file = '../app/sources/controllers/' . ucfirst($url[0]) . 'Controller.php';
+        if (file_exists($file)) {
+            require $file;
+        } else {
             $this->error($url[0]);
+            return false;
         }
-    } else {
-        if (isset($url[1])) {
+        $nameController = ucfirst($url[0]).'Controller';
+        $controller = new $nameController();
+        $controller->loadModel($url[0]);
+        if (isset($url[2])) {
             if (method_exists($controller,$url[1])) {
-                $controller->{$url[1]}(); // Call object.[url[1]]
+                $controller->{$url[1]}($url[2]);
+            } else{
+                $this->error($url[0]);
+            }
+        } else {
+            if (isset($url[1])) {
+                if (method_exists($controller,$url[1])) {
+                    $controller->{$url[1]}(); // Call object.[url[1]]
+                }
+                else{
+                    $this->error();
+                }
             }
             else{
-                $this->error();
+                $controller->index();
             }
-        }
-        else{
-            $controller->index();
         }
     }
 }

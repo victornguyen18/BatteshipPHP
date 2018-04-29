@@ -13,6 +13,8 @@ require '../app/libs/View.php';
 //Library
 require '../app/libs/Database.php';
 require '../app/libs/Session.php';
+require '../app/libs/Stack.php';
+require '../app/libs/Queue.php';
 
 require '../app/config/paths.php';
 require '../app/config/database.php';

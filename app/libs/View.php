@@ -15,7 +15,7 @@ class View
 
     public function render($name, $noInclude = false)
     {
-        extract($this->data);
+//        extract($this->data);
         if ($noInclude == true){
             require 'app/sources/views/' . $name . '.php';
         }

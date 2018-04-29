@@ -13,6 +13,7 @@ class Ship extends Model
     private $col;
     private $length;
     private $direction;
+    private $hit;
 
     // Direction Constants
     public static $UNSET = -1;
@@ -27,6 +28,7 @@ class Ship extends Model
     public function __construct($lengthInput,$nameInput){
         parent::__construct();
         $this->length = $lengthInput;
+        $this->hit = 0;
         $this->row = -1;
         $this->col = -1;
         $this->direction = self::$UNSET;
@@ -145,4 +147,11 @@ class Ship extends Model
                 ' and direction ' . self::directionToString();
     }
 
+    public function isDestroyed(){
+        return ($this->hit == $this->length);
+    }
+    public function isHit(){
+        $this->hit  = $this->hit + 1;
+
+    }
 }

@@ -13,12 +13,10 @@ class Player extends Model
     private static $NUMBER_OF_SHIPS = 10;
     public $ships;
     public $playerGrid;
-    public $oppGrid;
 
     public function __construct()
     {
         parent::__construct();
-        echo 'running';
         $this->ships = array();
         $nameTemp = '';
         $this->ships[0] = new Ship(2, '2A');
@@ -32,7 +30,6 @@ class Player extends Model
         $this->ships[8] = new Ship(4, '4B');
         $this->ships[9] = new Ship(5, '5A');
         $this->playerGrid = new Grid();
-        $this->oppGrid = new Grid();
     }
 
     public function addShips()
@@ -44,7 +41,7 @@ class Player extends Model
 
     public function numOfShipsLeft()
     {
-        $counter = 10;
+        $counter = static::$NUMBER_OF_SHIPS;
         foreach ($this->ships as $s) {
             if ($s->isLocationSet() and $s->isDirectionSet())
                 $counter--;
@@ -62,15 +59,15 @@ class Player extends Model
     {
         $available = true;
         if ($direction == 0) { // Horizontal
-            for ($i = $col; $i < $col + $s->getLength(); $i++) {
-                if ($this->playerGrid[$row][$i]->hasShip()) {
+            for ($i = $col; $i < $this->playerGrid->numCols(); $i++) {
+                if ($this->playerGrid->getGrid()[$row][$i]->hasShip()) {
                     Session::set('messages', 'ERROR! Unavailable location/default');
                     $available = false;
                 }
             }
         } else { // Vertical
-            for ($i = $row; $i < $row + $s->getLength(); $i++) {
-                if ($this->playerGrid[$i][$col]->hasShip()) {
+            for ($i = $row; $i < $this->playerGrid->numRows(); $i++) {
+                if ($this->playerGrid->getGrid()[$i][$col]->hasShip()) {
                     Session::set('messages', 'ERROR! Unavailable location/default');
                     $available = false;
                 }
