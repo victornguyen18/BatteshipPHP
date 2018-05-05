@@ -11,6 +11,7 @@ class Player extends Model
 
     private static $SHIP_LENGTHS = array(2, 2, 2, 2, 3, 3, 3, 4, 4, 5);
     private static $NUMBER_OF_SHIPS = 10;
+    private $score;
     public $ships;
     public $playerGrid;
 
@@ -30,6 +31,7 @@ class Player extends Model
         $this->ships[8] = new Ship(4, '4B');
         $this->ships[9] = new Ship(5, '5A');
         $this->playerGrid = new Grid();
+        $this->score = 0;
     }
 
     public function addShips()
@@ -78,6 +80,22 @@ class Player extends Model
             $s->setDirection($direction);
             $this->playerGrid->addShip($s);
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getScore()
+    {
+        return $this->score;
+    }
+
+    /**
+     * @param mixed $score
+     */
+    public function addScore($score)
+    {
+        $this->score += $score;
     }
 
 }

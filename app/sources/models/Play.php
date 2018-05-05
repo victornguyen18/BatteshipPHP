@@ -82,7 +82,7 @@ class Play extends Model
         return $guess;
     }
 
-    public function playGame(Player $player, Player $opponent, $difficulty = "hard")
+    public function playGame(Player $player, Player $opponent, $difficulty = "easy")
     {
         $count = Session::get("count");
         $shipMemory = Session::get("shipMemory");
@@ -105,6 +105,7 @@ class Play extends Model
                     $countShip = Session::get('countShip');
                     $countShip[$lengthShip] = $countShip[$lengthShip] - 1;
                     Session::set('countShip', $countShip);
+                    $opponent->addScore(10);
                     unset($locationMemory[$shipMemory->pop()->getName()]);
                     $count--;
                     //this mean there is no incompletely destroyed ship
@@ -127,51 +128,47 @@ class Play extends Model
         $col = $guess['col'];
         $row = $guess['row'];
         while ($opponent->playerGrid->alreadyGuessed($row, $col)) {
-            if (($difficulty == "easy") or ($difficulty == "normal") or ($difficulty == "hard")) {
-                if ($count > 0) { // on Target Mode
+            if ($count > 0) { // on Target Mode
+                //echo "<br/>";
+                //echo "-TARGET-";
+                //echo "<br/>";
+                // location of the first ship you hit.
+                $isFirstLocation = $locationMemory[$shipMemory->peek()->getName()];
+                if ($onFocus['row'] == $isFirstLocation['row'] and $onFocus['col'] == $isFirstLocation['col']) {
                     //echo "<br/>";
-                    //echo "-TARGET-";
+                    //echo "-TARGETFIRST-";
                     //echo "<br/>";
-                    // location of the first ship you hit.
-                    $isFirstLocation = $locationMemory[$shipMemory->peek()->getName()];
-                    if ($onFocus['row'] == $isFirstLocation['row'] and $onFocus['col'] == $isFirstLocation['col']) {
-                        //echo "<br/>";
-                        //echo "-TARGETFIRST-";
-                        //echo "<br/>";
-                        $guess = $this->target($onFocus, $opponent, true);
-                    } else {
-                        //echo "<br/>";
-                        //echo "-TARGETnotFIRST-";
-                        //echo "<br/>";
-                        $guess = $this->target($onFocus, $opponent);
-                    }
-                    $col = $guess['col'];
-                    $row = $guess['row'];
-                    $onFocus['direction'] = $guess['direction'];
-                    //there is no available cell to hit, then get back to the first location (in queue memory) to check the other side
-                    if ($guess['backToFirst']) {
-                        //echo "<br/>";
-                        //echo "-BACKTOFIRST-";
-                        //echo "<br/>";
-                        $onFocus['col'] = $isFirstLocation['col'];
-                        $onFocus['row'] = $isFirstLocation['row'];
-                    }
-                } else { // on Hunt Mode
+                    $guess = $this->target($onFocus, $opponent, true);
+                } else {
                     //echo "<br/>";
-                    //echo "-HUNT-";
+                    //echo "-TARGETnotFIRST-";
                     //echo "<br/>";
-                    $guess = $this->hunt(0, 7, $difficulty);
-                    $col = $guess['col'];
-                    $row = $guess['row'];
+                    $guess = $this->target($onFocus, $opponent);
                 }
+                $col = $guess['col'];
+                $row = $guess['row'];
+                $onFocus['direction'] = $guess['direction'];
+                //there is no available cell to hit, then get back to the first location (in queue memory) to check the other side
+                if ($guess['backToFirst']) {
+                    //echo "<br/>";
+                    //echo "-BACKTOFIRST-";
+                    //echo "<br/>";
+                    $onFocus['col'] = $isFirstLocation['col'];
+                    $onFocus['row'] = $isFirstLocation['row'];
+                }
+            } else { // on Hunt Mode
+                //echo "<br/>";
+                //echo "-HUNT-";
+                //echo "<br/>";
+                $guess = $this->hunt(0, 7, $difficulty);
+                $col = $guess['col'];
+                $row = $guess['row'];
             }
-//            } elseif ($difficulty == "normal") {
-//
-//            }
         }
         // If the shot hit a ship
         if ($opponent->playerGrid->hasShip($row, $col)) {
             $opponent->playerGrid->markHit($row, $col);
+            $opponent->addScore(5);
             $status = $opponent->playerGrid->getStatus($row, $col);
             if ($count == 0) { // first Hit
                 $shipMemory->push($opponent->playerGrid->getGrid()[$row][$col]->getShip());
@@ -199,6 +196,7 @@ class Play extends Model
                             $countShip = Session::get('countShip');
                             $countShip[$lengthShip] = $countShip[$lengthShip] - 1;
                             Session::set('countShip', $countShip);
+                            $opponent->addScore(10);
                             unset($locationMemory[$shipMemory->pop()->getName()]);
 
                         }
@@ -233,6 +231,7 @@ class Play extends Model
         $data['row'] = $row;
         $data['status'] = $status;
         $data['count'] = $count;
+        $data['score'] = $opponent->getScore();
         Session::set("player", $opponent);
         Session::set("computer", $player);
         Session::set("shipMemory", $shipMemory);
@@ -264,6 +263,7 @@ class Play extends Model
                 }
             }
         }
+
         if ($opponent->playerGrid->hasLost()) $data['result'] = "You win";
         else $data['result'] = "still playing" . $count;
 

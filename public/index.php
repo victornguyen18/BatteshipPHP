@@ -24,5 +24,6 @@ require '../app/sources/models/Ship.php';
 require '../app/sources/models/Location.php';
 require '../app/sources/models/Grid.php';
 require '../app/sources/models/Player.php';
+require '../app/sources/models/Battleship.php';
 Session::init();
 $app = new App();
