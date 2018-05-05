@@ -61,6 +61,9 @@ echo "<br/>";
     $(function () {
         $(document).on('click', '#hit', function () {
             $.post('/Play/playGame', {}, function (o) {
+                // $locationMemory = Session::get("locationMemory");
+                // $onFocus = Session::get("onFocus");
+                console.log(o);
                 $("#" + o.col.toString() + o.row.toString()).html(o.status.toString());
                 $("#" + o.col.toString() + o.row.toString()).css('color', 'red');
                 $("#status").html(o.status.toString());
@@ -70,6 +73,9 @@ echo "<br/>";
                     $("#hit").prop("disabled", true);
                 }
             }, "json");
+            //console.log('count: <?php //echo Session::get("count");?>//');
+            //console.log('shipMemory: <?php //echo json_encode(Session::get("shipMemory")->getQueue());?>//');
+            //console.log('shipMemory: <?php //echo json_encode(Session::get("locationMemory"));?>//');
             return false;
         });
     });

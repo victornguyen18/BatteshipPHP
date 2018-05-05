@@ -62,4 +62,12 @@ class Queue {
     public function size() {
         return count($this->queue);
     }
+
+    /**
+     * @return array
+     */
+    public function getQueue()
+    {
+        return $this->queue;
+    }
 }
