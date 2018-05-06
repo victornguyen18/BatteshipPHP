@@ -1,0 +1,147 @@
+@font-face{
+    font-family: "Flama Condensed Medium";
+    src: url(../font/myFont.otf);
+}
+
+body{
+    background: url("../img/bg.jpg");
+    font-family: "Flama Condensed Medium";
+}
+
+
+#myNavBar .navbar-nav {
+    width: 100%;
+    text-align: center;
+}
+#myNavBar .navbar-nav li {
+    display: inline-block;
+    float: none;
+    vertical-align: middle;
+}
+#myNavBar .navbar-nav a{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.logo{
+    position: absolute;
+    left: -15%;
+    top: -10%;
+    width: 250px;
+    height: 200px;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.logo-border {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 10px solid transparent;
+    border-color: #003300;
+}
+
+.container{
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin: 0px auto;
+}
+
+.header{
+    text-align: center;
+    background-color: #fff;
+}
+
+.header h2{
+    margin: 0;
+    line-height: 50px;
+    color: #000;
+    font-family: "Flama Condensed Medium";
+    text-shadow: 2px 2px 4px #666;
+}
+
+.navbar{
+    border-radius: 0;
+    margin-bottom: 50px;
+}
+
+.title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.board {
+    width: 320px;
+    display: inline-block;
+    padding: 0;
+    vertical-align: middle;
+}
+
+.frame{
+    height: 320px;
+}
+
+.ship-area{
+    display: inline-block;
+    width: 320px;
+    vertical-align: middle;
+    margin-left: 10%;
+}
+
+.location{
+    min-width: 40px;
+    min-height: 40px;
+    border: 1px solid transparent;
+    border-color: #000;
+    display: inline-block;
+    margin: 0;
+    float: left;
+}
+
+.draggable {
+    position: relative;
+    display: inline;
+    padding: 0;
+}
+
+.draggable.ui-draggable-dragging {
+    opacity: 0.5;
+}
+
+.ship-container{
+    display: block;
+    height: 40px;
+}
+.ship-2 {
+    position: absolute;
+}
+.ship-2 img{
+    height: 39px;
+    width: 79px;
+}
+.ship-3 {
+    position: absolute;
+}
+.ship-3 img{
+    height: 39px;
+    width: 119px;
+}
+.ship-4 {
+    position: absolute;
+}
+.ship-4 img{
+    height: 39px;
+    width: 159px;
+}
+.ship-5 {
+    position: absolute;
+}
+.ship-5 img{
+    height: 39px;
+    width: 199px;
+}
+
+.navbar-inner ul li{
+    pointer-events: none;
+}

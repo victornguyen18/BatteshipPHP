@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Battleships Online</title>
+
+    <link rel="stylesheet" href="public/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+    <header>
+        <nav id="myNavBar" class="navbar" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavBar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar">Link 1</span>
+                        <span class="icon-bar">Link 2</span>
+                        <span class="icon-bar">Link 3</span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavBar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li style="margin-top: 20px"><a class="logo-border" href="#">
+                            <img class="logo" src="public/img/ship/logo.png" alt="Battleship Online">
+                        </a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                    </ul>
+                </div>
+                <
+            </div>
+        </nav>
+    </header>
+
+    <div class="container" id="myWizard">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <ul class="nav nav-pills">
+                    <li class="active"><a href="#step1" data-toggle="tab" data-step="1">GET READY</a></li>
+                    <li><a href="#step2" data-toggle="tab" data-step="2" style="display: none;">Step 2</a></li>
+                    <li><a href="#step3" data-toggle="tab" data-step="3">BATTLE</a></li>
+                    <li><a href="#step4" data-toggle="tab" data-step="4">RESULT</a></li>
+                    <li><a href="#step5" data-toggle="tab" data-step="5">VIEW SCORE</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="step1">
+                <div class="title">PLACE YOUR SHIPS</div>
+                <div class="frame" id="frame">
+                    <div class="board">
+                        <div class="location" id="00" rel="00"></div>
+                        <div class="location" id="01" rel="01"></div>
+                        <div class="location" id="02" rel="02"></div>
+                        <div class="location" id="03" rel="03"></div>
+                        <div class="location" id="04" rel="04"></div>
+                        <div class="location" id="05" rel="05"></div>
+                        <div class="location" id="06" rel="06"></div>
+                        <div class="location" id="07" rel="07"></div>
+
+                        <div class="location" id="10" rel="10"></div>
+                        <div class="location" id="11" rel="11"></div>
+                        <div class="location" id="12" rel="12"></div>
+                        <div class="location" id="13" rel="13"></div>
+                        <div class="location" id="14" rel="14"></div>
+                        <div class="location" id="15" rel="15"></div>
+                        <div class="location" id="16" rel="16"></div>
+                        <div class="location" id="17" rel="17"></div>
+
+                        <div class="location" id="20" rel="20"></div>
+                        <div class="location" id="21" rel="21"></div>
+                        <div class="location" id="22" rel="22"></div>
+                        <div class="location" id="23" rel="23"></div>
+                        <div class="location" id="24" rel="24"></div>
+                        <div class="location" id="25" rel="25"></div>
+                        <div class="location" id="26" rel="26"></div>
+                        <div class="location" id="27" rel="27"></div>
+
+                        <div class="location" id="30" rel="30"></div>
+                        <div class="location" id="31" rel="31"></div>
+                        <div class="location" id="32" rel="32"></div>
+                        <div class="location" id="33" rel="33"></div>
+                        <div class="location" id="34" rel="34"></div>
+                        <div class="location" id="35" rel="35"></div>
+                        <div class="location" id="36" rel="36"></div>
+                        <div class="location" id="37" rel="37"></div>
+
+                        <div class="location" id="40" rel="40"></div>
+                        <div class="location" id="41" rel="41"></div>
+                        <div class="location" id="42" rel="42"></div>
+                        <div class="location" id="43" rel="43"></div>
+                        <div class="location" id="44" rel="44"></div>
+                        <div class="location" id="45" rel="45"></div>
+                        <div class="location" id="46" rel="46"></div>
+                        <div class="location" id="47" rel="47"></div>
+
+                        <div class="location" id="50" rel="50"></div>
+                        <div class="location" id="51" rel="51"></div>
+                        <div class="location" id="52" rel="52"></div>
+                        <div class="location" id="53" rel="53"></div>
+                        <div class="location" id="54" rel="54"></div>
+                        <div class="location" id="55" rel="55"></div>
+                        <div class="location" id="56" rel="56"></div>
+                        <div class="location" id="57" rel="57"></div>
+
+                        <div class="location" id="60" rel="60"></div>
+                        <div class="location" id="61" rel="61"></div>
+                        <div class="location" id="62" rel="62"></div>
+                        <div class="location" id="63" rel="63"></div>
+                        <div class="location" id="64" rel="64"></div>
+                        <div class="location" id="65" rel="65"></div>
+                        <div class="location" id="66" rel="66"></div>
+                        <div class="location" id="67" rel="67"></div>
+
+                        <div class="location" id="70" rel="70"></div>
+                        <div class="location" id="71" rel="71"></div>
+                        <div class="location" id="72" rel="72"></div>
+                        <div class="location" id="73" rel="73"></div>
+                        <div class="location" id="74" rel="74"></div>
+                        <div class="location" id="75" rel="75"></div>
+                        <div class="location" id="76" rel="76"></div>
+                        <div class="location" id="77" rel="77"></div>
+                    </div>
+                    <div class="ship-area">
+                        <!--<div class="btn btn-default rotate">ROTATE</div>-->
+
+                        <div class="row" style="height: 200px; width: 560px;">
+                            <div class="ship-container">
+                                <!--SHIP 2-->
+                                <div class="draggable ship-2" id="2A" rel="0">
+                                    <img src="public/img/ship_01.png" alt=""/>
+                                </div>
+                                <div class="draggable ship-2" id="2B" rel="0">
+                                    <img src="public/img/ship_01.png" alt=""/>
+                                </div>
+                                <div class="draggable ship-2" id="2C" rel="0">
+                                    <img src="public/img/ship_01.png" alt=""/>
+                                </div>
+                                <div class="draggable ship-2" id="2D" rel="0">
+                                    <img src="public/img/ship_01.png" alt=""/>
+                                </div>
+                            </div>
+                            <!--SHIP 3-->
+                            <div class="ship-container">
+                                <div class="draggable ship-3" id="3A" rel="0">
+                                    <img src="public/img/ship_01.png" alt=""/>
+                                </div>
+                                <div class="draggable ship-3" id="3B" rel="0">
+                                    <img src="public/img/ship_01.png" alt=""/>
+                                </div>
+                                <div class="draggable ship-3" id="3C" rel="0">
+                                    <img src="public/img/ship_01.png" alt=""/>
+                                </div>
+                            </div>
+                            <div class="ship-container">
+                                <!--SHIP 4-->
+                                <div class="draggable ship-4" id="4A" rel="0">
+                                    <img src="public/img/ship_01.png" alt=""/>
+                                </div>
+                                <div class="draggable ship-4" id="4B" rel="0">
+                                    <img src="public/img/ship_01.png" alt=""/>
+                                </div>
+                            </div>
+                            <div class="ship-container">
+                                <!--SHIP 5-->
+                                <div class="draggable ship-5" id="5A" rel="0">
+                                    <img src="public/img/ship_01.png" alt=""/>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <a class="btn btn-default btn-lg next">Continue</a>
+            </div>
+            <div class="tab-pane fade" id="step2">
+                <div class="well">
+                    CHOOSE YOUR WEAPONS
+                </div>
+                <a class="btn btn-default prev" href="#">Rearrange</a>
+                <a class="btn btn-default next" href="#">Ready?? GO BATTLE!!</a>
+            </div>
+            <div class="tab-pane fade" id="step3">
+                <div class="well">
+                    GO BATTLE!!
+                </div>
+                <a class="btn btn-default next" href="#">Quit game</a>
+            </div>
+            <div class="tab-pane fade" id="step4">
+                <div class="well">
+                    RESULT
+                </div>
+                <a class="btn btn-default next" href="#">Continue</a>
+            </div>
+            <div class="tab-pane fade" id="step5">
+                <div class="well">
+                    YOUR SCORE:
+                </div>
+                <a class="btn btn-success startOver" href="#">Start over</a>
+            </div>
+        </div>
+        <!--END TAB CONTENT-->
+    </div>
+    <!--END CONTAINER-->
+
+</div>
+<script src="public/js/jquery.min.js"></script>
+<script src="public/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="public/js/default.js"></script>
+<script src="public/js/jquery-ui.min.js"></script>
+</body>
+</html>
