@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Battleships Online</title>
+
+    <link rel="stylesheet" href="public/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+    <header>
+        <nav id="myNavBar" class="navbar" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavBar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar">Link 1</span>
+                        <span class="icon-bar">Link 2</span>
+                        <span class="icon-bar">Link 3</span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavBar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"></li>
+                        <li></li>
+                        <li style="margin-top: 20px"><a class="logo-border" href="#">
+                            <img class="logo" src="public/img/ship/logo.png" alt="Battleship Online">
+                        </a></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="title">CHOOSE YOUR WEAPONS</div>
+        <div class="row weapons">
+            <div class="total-point">YOUR GOLD: 200 gold</div>
+            <div class="col-lg-6 col-md-6">
+                <div class="weapon">
+                    <img src="public/img/radar.png" alt="">
+                </div>
+                <div class="cost">COST: 100 gold</div>
+                <a class="btn btn-success pay">PAY</a>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="weapon">
+                    <img src="public/img/bomb.png" alt="">
+                </div>
+                <div class="cost">COST: 200 gold</div>
+                <a class="btn btn-success pay">PAY</a>
+            </div>
+        </div>
+        <a class="btn btn-default prev" href="#">Rearrange</a>
+        <a class="btn btn-default next" href="#">Ready?? GO BATTLE!!</a>
+    </div>
+
+</div>
+<!--END CONTAINER-->
+<script src="public/js/jquery.min.js"></script>
+<script src="public/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="public/js/default.js"></script>
+<script src="public/js/jquery-ui.min.js"></script>
+</body>
+</html>
