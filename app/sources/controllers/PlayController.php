@@ -15,6 +15,9 @@ class PlayController extends Controller
     function index(){
         $this->view->render('play/index');
     }
+    function battle(){
+        $this->view->render('play/battle');
+    }
 
     function playGame(){
         $this->model->playGame(Session::get("computer"), Session::get("player"));

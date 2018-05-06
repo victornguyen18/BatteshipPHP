@@ -1,192 +1,244 @@
 
-/**
- * Created by PhpStorm.
- * User: trhgnhat
- * Date: 5/6/2018
- * Time: 6:54 PM
- */
+<?php
+$player = Session::get("player");
+$computer = Session::get("computer");
+foreach ($player->getShips() as $ship){
+    echo "</br>Ship " . $ship->getName() . "</br>";
+    print_r($ship);
+    echo "</br>";
+}
+?>
+
+<?php foreach ($player->getShips() as $ship) : ?>
+    <script>
+        $(function () {
+            if (<?php echo $ship->getDirection()?> == 0)
+           {
+                var row = parseInt(<?php echo $ship->getRow();?>);
+                var col = parseInt(<?php echo $ship->getCol();?>);
+               $("#p" + row + col).css('background-color', 'green');
+                for (var i = 1; i < parseInt(<?php echo $ship->getLength();?>) - 1; i++) {
+                    row = parseInt(<?php echo $ship->getRow();?>);
+                    col = parseInt(<?php echo $ship->getCol();?>) + i;
+                   $("#p" + row + col).css('background-color', 'blue');
+               }
+               col++;
+               $("#p" + row + col).css('background-color', 'pink');
+
+           }
+       else
+           {
+               // VERTICAL
+                var row = parseInt(<?php echo $ship->getRow();?>);
+                var col = parseInt(<?php echo $ship->getCol();?>);
+               $("#p" + row + col).css('background-color', 'green');
+                for (var i = 1; i < parseInt(<?php echo $ship->getLength();?>) - 1; i++) {
+                    var row = parseInt(<?php echo $ship->getRow();?>) + i;
+                    var col = parseInt(<?php echo $ship->getCol();?>);
+                   $("#p" + row + col).css('background-color', 'blue');
+               }
+               row++;
+               $("#p" + row + col).css('background-color', 'pink');
+           }
+       });
+    </script>
+<?php endforeach; ?>
+<script>
+    $(function () {
+        $('.battle-location').click(function(){
+            if ($(this).prop('id').match('p')){
+                alert('Hăm được.');
+            }
+            else{
+                var rel = $(this).prop('id');
+                alert(rel);
+                $(this).css('background-color','red');
+            }
+        });
+    })
+</script>
 <div class="container" style="text-align: left;">
-        <div class="title">GO BATTLE!!</div>
-        <div class="battle-board" style="float: left">
-            <div class="location-number"></div>
-            <div class="location-number">0</div>
-            <div class="location-number">1</div>
-            <div class="location-number">2</div>
-            <div class="location-number">3</div>
-            <div class="location-number">4</div>
-            <div class="location-number">5</div>
-            <div class="location-number">6</div>
-            <div class="location-number">7</div>
+    <div class="title">GO BATTLE!!</div>
+    <div class="battle-board" style="float: left">
+        <div class="location-number"></div>
+        <div class="location-number">0</div>
+        <div class="location-number">1</div>
+        <div class="location-number">2</div>
+        <div class="location-number">3</div>
+        <div class="location-number">4</div>
+        <div class="location-number">5</div>
+        <div class="location-number">6</div>
+        <div class="location-number">7</div>
 
-            <div class="location-number">0</div>
-            <div class="battle-location" rel="p00"></div>
-            <div class="battle-location" rel="p01"></div>
-            <div class="battle-location" rel="p02"></div>
-            <div class="battle-location" rel="p03"></div>
-            <div class="battle-location" rel="p04"></div>
-            <div class="battle-location" rel="p05"></div>
-            <div class="battle-location" rel="p06"></div>
-            <div class="battle-location" rel="p07"></div>
+        <div class="location-number">0</div>
+        <div class="battle-location" id="p00"></div>
+        <div class="battle-location" id="p01"></div>
+        <div class="battle-location" id="p02"></div>
+        <div class="battle-location" id="p03"></div>
+        <div class="battle-location" id="p04"></div>
+        <div class="battle-location" id="p05"></div>
+        <div class="battle-location" id="p06"></div>
+        <div class="battle-location" id="p07"></div>
 
-            <div class="location-number">1</div>
-            <div class="battle-location" rel="p10"></div>
-            <div class="battle-location" rel="p11"></div>
-            <div class="battle-location" rel="p12"></div>
-            <div class="battle-location" rel="p13"></div>
-            <div class="battle-location" rel="p14"></div>
-            <div class="battle-location" rel="p15"></div>
-            <div class="battle-location" rel="p16"></div>
-            <div class="battle-location" rel="p17"></div>
+        <div class="location-number">1</div>
+        <div class="battle-location" id="p10"></div>
+        <div class="battle-location" id="p11"></div>
+        <div class="battle-location" id="p12"></div>
+        <div class="battle-location" id="p13"></div>
+        <div class="battle-location" id="p14"></div>
+        <div class="battle-location" id="p15"></div>
+        <div class="battle-location" id="p16"></div>
+        <div class="battle-location" id="p17"></div>
 
-            <div class="location-number">2</div>
-            <div class="battle-location" rel="p20"></div>
-            <div class="battle-location" rel="p21"></div>
-            <div class="location" rel="p22"></div>
-            <div class="battle-location" rel="p23"></div>
-            <div class="battle-location" rel="p24"></div>
-            <div class="battle-location" rel="p25"></div>
-            <div class="battle-location" rel="p26"></div>
-            <div class="battle-location" rel="p27"></div>
+        <div class="location-number">2</div>
+        <div class="battle-location" id="p20"></div>
+        <div class="battle-location" id="p21"></div>
+        <div class="location" id="p22"></div>
+        <div class="battle-location" id="p23"></div>
+        <div class="battle-location" id="p24"></div>
+        <div class="battle-location" id="p25"></div>
+        <div class="battle-location" id="p26"></div>
+        <div class="battle-location" id="p27"></div>
 
-            <div class="location-number">3</div>
-            <div class="battle-location" rel="p30"></div>
-            <div class="battle-location" rel="p31"></div>
-            <div class="battle-location" rel="p32"></div>
-            <div class="battle-location" rel="p33"></div>
-            <div class="battle-location" rel="p34"></div>
-            <div class="battle-location" rel="p35"></div>
-            <div class="battle-location" rel="p36"></div>
-            <div class="battle-location" rel="p37"></div>
+        <div class="location-number">3</div>
+        <div class="battle-location" id="p30"></div>
+        <div class="battle-location" id="p31"></div>
+        <div class="battle-location" id="p32"></div>
+        <div class="battle-location" id="p33"></div>
+        <div class="battle-location" id="p34"></div>
+        <div class="battle-location" id="p35"></div>
+        <div class="battle-location" id="p36"></div>
+        <div class="battle-location" id="p37"></div>
 
-            <div class="location-number">4</div>
-            <div class="battle-location" rel="p40"></div>
-            <div class="battle-location" rel="p41"></div>
-            <div class="battle-location" rel="p42"></div>
-            <div class="battle-location" rel="p43"></div>
-            <div class="battle-location" rel="p44"></div>
-            <div class="battle-location" rel="p45"></div>
-            <div class="battle-location" rel="p46"></div>
-            <div class="battle-location" rel="p47"></div>
+        <div class="location-number">4</div>
+        <div class="battle-location" id="p40"></div>
+        <div class="battle-location" id="p41"></div>
+        <div class="battle-location" id="p42"></div>
+        <div class="battle-location" id="p43"></div>
+        <div class="battle-location" id="p44"></div>
+        <div class="battle-location" id="p45"></div>
+        <div class="battle-location" id="p46"></div>
+        <div class="battle-location" id="p47"></div>
 
-            <div class="location-number">5</div>
-            <div class="battle-location" rel="50"></div>
-            <div class="battle-location" rel="p51"></div>
-            <div class="battle-location" rel="p52"></div>
-            <div class="battle-location" rel="p53"></div>
-            <div class="battle-location" rel="p54"></div>
-            <div class="battle-location" rel="p55"></div>
-            <div class="battle-location" rel="p56"></div>
-            <div class="battle-location" rel="p57"></div>
+        <div class="location-number">5</div>
+        <div class="battle-location" id="p50"></div>
+        <div class="battle-location" id="p51"></div>
+        <div class="battle-location" id="p52"></div>
+        <div class="battle-location" id="p53"></div>
+        <div class="battle-location" id="p54"></div>
+        <div class="battle-location" id="p55"></div>
+        <div class="battle-location" id="p56"></div>
+        <div class="battle-location" id="p57"></div>
 
-            <div class="location-number">6</div>
-            <div class="battle-location" rel="p60"></div>
-            <div class="battle-location" rel="p61"></div>
-            <div class="battle-location" rel="p62"></div>
-            <div class="battle-location" rel="p63"></div>
-            <div class="battle-location" rel="p64"></div>
-            <div class="battle-location" rel="p65"></div>
-            <div class="battle-location" rel="p66"></div>
-            <div class="battle-location" rel="p67"></div>
+        <div class="location-number">6</div>
+        <div class="battle-location" id="p60"></div>
+        <div class="battle-location" id="p61"></div>
+        <div class="battle-location" id="p62"></div>
+        <div class="battle-location" id="p63"></div>
+        <div class="battle-location" id="p64"></div>
+        <div class="battle-location" id="p65"></div>
+        <div class="battle-location" id="p66"></div>
+        <div class="battle-location" id="p67"></div>
 
-            <div class="location-number">7</div>
-            <div class="battle-location" rel="p70"></div>
-            <div class="battle-location" rel="p71"></div>
-            <div class="battle-location" rel="p72"></div>
-            <div class="battle-location" rel="p73"></div>
-            <div class="battle-location" rel="p74"></div>
-            <div class="battle-location" rel="p75"></div>
-            <div class="battle-location" rel="p76"></div>
-            <div class="location" rel="p77"></div>
-        </div>
-        <div class="battle-board" style="float: right;">
-            <div class="location-number"></div>
-            <div class="location-number">0</div>
-            <div class="location-number">1</div>
-            <div class="location-number">2</div>
-            <div class="location-number">3</div>
-            <div class="location-number">4</div>
-            <div class="location-number">5</div>
-            <div class="location-number">6</div>
-            <div class="location-number">7</div>
-
-            <div class="location-number">0</div>
-            <div class="battle-location" rel="c00"></div>
-            <div class="battle-location" rel="c01"></div>
-            <div class="battle-location" rel="c02"></div>
-            <div class="battle-location" rel="c03"></div>
-            <div class="battle-location" rel="c04"></div>
-            <div class="battle-location" rel="c05"></div>
-            <div class="battle-location" rel="c06"></div>
-            <div class="battle-location" rel="c07"></div>
-
-            <div class="location-number">1</div>
-            <div class="battle-location" rel="c10"></div>
-            <div class="battle-location" rel="c11"></div>
-            <div class="battle-location" rel="c12"></div>
-            <div class="battle-location" rel="c13"></div>
-            <div class="battle-location" rel="c14"></div>
-            <div class="battle-location" rel="c15"></div>
-            <div class="battle-location" rel="c16"></div>
-            <div class="battle-location" rel="c17"></div>
-
-            <div class="location-number">2</div>
-            <div class="battle-location" rel="c20"></div>
-            <div class="battle-location" rel="c21"></div>
-            <div class="battle-location" rel="c22"></div>
-            <div class="battle-location" rel="c23"></div>
-            <div class="battle-location" rel="c24"></div>
-            <div class="battle-location" rel="c25"></div>
-            <div class="battle-location" rel="c26"></div>
-            <div class="battle-location" rel="c27"></div>
-
-            <div class="location-number">3</div>
-            <div class="battle-location" rel="c30"></div>
-            <div class="battle-location" rel="c31"></div>
-            <div class="battle-location" rel="c32"></div>
-            <div class="battle-location" rel="c33"></div>
-            <div class="battle-location" rel="c34"></div>
-            <div class="battle-location" rel="c35"></div>
-            <div class="battle-location" rel="c36"></div>
-            <div class="battle-location" rel="c37"></div>
-
-            <div class="location-number">4</div>
-            <div class="battle-location" rel="c40"></div>
-            <div class="battle-location" rel="c41"></div>
-            <div class="battle-location" rel="c42"></div>
-            <div class="battle-location" rel="c43"></div>
-            <div class="battle-location" rel="c44"></div>
-            <div class="battle-location" rel="c45"></div>
-            <div class="battle-location" rel="c46"></div>
-            <div class="battle-location" rel="c47"></div>
-
-            <div class="location-number">5</div>
-            <div class="battle-location" rel="50"></div>
-            <div class="battle-location" rel="c51"></div>
-            <div class="battle-location" rel="c52"></div>
-            <div class="battle-location" rel="c53"></div>
-            <div class="battle-location" rel="c54"></div>
-            <div class="battle-location" rel="c55"></div>
-            <div class="battle-location" rel="c56"></div>
-            <div class="battle-location" rel="c57"></div>
-
-            <div class="location-number">6</div>
-            <div class="battle-location" rel="c60"></div>
-            <div class="battle-location" rel="c61"></div>
-            <div class="battle-location" rel="c62"></div>
-            <div class="battle-location" rel="c63"></div>
-            <div class="battle-location" rel="c64"></div>
-            <div class="battle-location" rel="c65"></div>
-            <div class="battle-location" rel="c66"></div>
-            <div class="battle-location" rel="c67"></div>
-
-            <div class="location-number">7</div>
-            <div class="battle-location" rel="c70"></div>
-            <div class="battle-location" rel="c71"></div>
-            <div class="battle-location" rel="c72"></div>
-            <div class="battle-location" rel="c73"></div>
-            <div class="battle-location" rel="c74"></div>
-            <div class="battle-location" rel="c75"></div>
-            <div class="battle-location" rel="c76"></div>
-            <div class="battle-location" rel="c77"></div>
-        </div>
+        <div class="location-number">7</div>
+        <div class="battle-location" id="p70"></div>
+        <div class="battle-location" id="p71"></div>
+        <div class="battle-location" id="p72"></div>
+        <div class="battle-location" id="p73"></div>
+        <div class="battle-location" id="p74"></div>
+        <div class="battle-location" id="p75"></div>
+        <div class="battle-location" id="p76"></div>
+        <div class="location" id="p77"></div>
     </div>
+    <div class="battle-board" style="float: right;">
+        <div class="location-number"></div>
+        <div class="location-number">0</div>
+        <div class="location-number">1</div>
+        <div class="location-number">2</div>
+        <div class="location-number">3</div>
+        <div class="location-number">4</div>
+        <div class="location-number">5</div>
+        <div class="location-number">6</div>
+        <div class="location-number">7</div>
+
+        <div class="location-number">0</div>
+        <div class="battle-location" id="c00"></div>
+        <div class="battle-location" id="c01"></div>
+        <div class="battle-location" id="c02"></div>
+        <div class="battle-location" id="c03"></div>
+        <div class="battle-location" id="c04"></div>
+        <div class="battle-location" id="c05"></div>
+        <div class="battle-location" id="c06"></div>
+        <div class="battle-location" id="c07"></div>
+
+        <div class="location-number">1</div>
+        <div class="battle-location" id="c10"></div>
+        <div class="battle-location" id="c11"></div>
+        <div class="battle-location" id="c12"></div>
+        <div class="battle-location" id="c13"></div>
+        <div class="battle-location" id="c14"></div>
+        <div class="battle-location" id="c15"></div>
+        <div class="battle-location" id="c16"></div>
+        <div class="battle-location" id="c17"></div>
+
+        <div class="location-number">2</div>
+        <div class="battle-location" id="c20"></div>
+        <div class="battle-location" id="c21"></div>
+        <div class="battle-location" id="c22"></div>
+        <div class="battle-location" id="c23"></div>
+        <div class="battle-location" id="c24"></div>
+        <div class="battle-location" id="c25"></div>
+        <div class="battle-location" id="c26"></div>
+        <div class="battle-location" id="c27"></div>
+
+        <div class="location-number">3</div>
+        <div class="battle-location" id="c30"></div>
+        <div class="battle-location" id="c31"></div>
+        <div class="battle-location" id="c32"></div>
+        <div class="battle-location" id="c33"></div>
+        <div class="battle-location" id="c34"></div>
+        <div class="battle-location" id="c35"></div>
+        <div class="battle-location" id="c36"></div>
+        <div class="battle-location" id="c37"></div>
+
+        <div class="location-number">4</div>
+        <div class="battle-location" id="c40"></div>
+        <div class="battle-location" id="c41"></div>
+        <div class="battle-location" id="c42"></div>
+        <div class="battle-location" id="c43"></div>
+        <div class="battle-location" id="c44"></div>
+        <div class="battle-location" id="c45"></div>
+        <div class="battle-location" id="c46"></div>
+        <div class="battle-location" id="c47"></div>
+
+        <div class="location-number">5</div>
+        <div class="battle-location" id="50"></div>
+        <div class="battle-location" id="c51"></div>
+        <div class="battle-location" id="c52"></div>
+        <div class="battle-location" id="c53"></div>
+        <div class="battle-location" id="c54"></div>
+        <div class="battle-location" id="c55"></div>
+        <div class="battle-location" id="c56"></div>
+        <div class="battle-location" id="c57"></div>
+
+        <div class="location-number">6</div>
+        <div class="battle-location" id="c60"></div>
+        <div class="battle-location" id="c61"></div>
+        <div class="battle-location" id="c62"></div>
+        <div class="battle-location" id="c63"></div>
+        <div class="battle-location" id="c64"></div>
+        <div class="battle-location" id="c65"></div>
+        <div class="battle-location" id="c66"></div>
+        <div class="battle-location" id="c67"></div>
+
+        <div class="location-number">7</div>
+        <div class="battle-location" id="c70"></div>
+        <div class="battle-location" id="c71"></div>
+        <div class="battle-location" id="c72"></div>
+        <div class="battle-location" id="c73"></div>
+        <div class="battle-location" id="c74"></div>
+        <div class="battle-location" id="c75"></div>
+        <div class="battle-location" id="c76"></div>
+        <div class="battle-location" id="c77"></div>
+    </div>
+</div>
