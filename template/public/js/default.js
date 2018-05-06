@@ -155,10 +155,17 @@ function handleDrop(event, ui) {
     ui.draggable.draggable('option', 'revert', false);
 }
 
+// Get location in battle
+$('.battle-location').click(function(){
+    var rel = $(this).attr('rel');
+    alert(rel);
+});
+
 
 // Next button click event
 $('.next').click(function () {
     var nextId = $(this).parents('.tab-pane').next().attr('id');
+    alert($(this).parents('.tab-pane').next().attr('id'));
     $('a[href=#' + nextId + ']').click();
 });
 
@@ -180,3 +187,5 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (event) {
     var percent = (parseInt(step) / 5) * 100;
 
 });
+
+//CLick on div
