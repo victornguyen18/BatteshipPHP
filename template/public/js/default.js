@@ -156,10 +156,15 @@ function handleDrop(event, ui) {
 }
 
 // Get location in battle
+
 $('.battle-location').click(function(){
     var rel = $(this).attr('rel');
     alert(rel);
+    $(this).css('background-color','red');
 });
+
+
+// Show ships arranged by player
 
 
 // Next button click event
