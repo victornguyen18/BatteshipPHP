@@ -89,6 +89,10 @@ class Player extends Model
     {
         return $this->score;
     }
+    public function getShips()
+    {
+        return $this->ships;
+    }
 
     /**
      * @param mixed $score

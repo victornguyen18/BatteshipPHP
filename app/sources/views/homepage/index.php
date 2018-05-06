@@ -7,6 +7,9 @@ $player = Session::get("player");
 $computer = Session::get("computer");
 echo "<br/>";
 print_r($player->playerGrid->getGrid()[0][0]->getStatus());
+foreach ($player->getShips() as $ship){
+    print_r($ship->getRow());
+}
 //print_r($player->playerGrid->getGrid()[Session::get("col")][Session::get("row")]->getStatus());
 echo Session::get("col");
 echo Session::get("row");
