@@ -40,20 +40,17 @@ class HomepageController extends Controller
         for ($row = 0; $row < Grid::$NUM_ROWS; $row++)
             for ($col = 0; $col < Grid::$NUM_COLS; $col++) {
                 if ((($row + $col + 1) % 2) == 0) {
-                    $this->limitRand2[count($this->limitRand2)]['row'] = $row;
-                    $this->limitRand2[count($this->limitRand2) - 1]['col'] = $col;
+                    $this->limitRand2[count($this->limitRand2)] = array('row' => $row, 'col' => $col);
+
                 }
                 if ((($row + $col + 1) % 3) == 0) {
-                    $this->limitRand3[count($this->limitRand3)]['row'] = $row;
-                    $this->limitRand3[count($this->limitRand3) - 1]['col'] = $col;
+                    $this->limitRand3[count($this->limitRand3)] = array('row' => $row, 'col' => $col);
                 }
                 if ((($row + $col + 1) % 4) == 0) {
-                    $this->limitRand4[count($this->limitRand4)]['row'] = $row;
-                    $this->limitRand4[count($this->limitRand4) - 1]['col'] = $col;
+                    $this->limitRand4[count($this->limitRand4)] = array('row' => $row, 'col' => $col);
                 }
                 if ((($row + $col + 1) % 5) == 0) {
-                    $this->limitRand5[count($this->limitRand5)]['row'] = $row;
-                    $this->limitRand5[count($this->limitRand5) - 1]['col'] = $col;
+                    $this->limitRand5[count($this->limitRand5)] = array('row' => $row, 'col' => $col);
                 }
             }
         self::$computer = new Player();
@@ -64,7 +61,8 @@ class HomepageController extends Controller
         parent::__construct();
     }
 
-    function index(){
+    function index()
+    {
         Session::set("player", self::$player);
         Session::set("computer", self::$computer);
         Session::set("count", 0);
@@ -79,44 +77,45 @@ class HomepageController extends Controller
         $this->view->render('homepage/index');
     }
 
-    function detail(){
+    function detail()
+    {
         $this->view->render('homepage/index');
     }
 
     private function setupComputer(Player $p)
     {
+        Session::set('check', 0);
         $counter = 1;
         $normCounter = 0;
         // infinitive loop
-        while ($p->numOfShipsLeft() > 0) {
-            for ($i = 0; $i < count($p->ships); $i++) {
+//        while ($p->numOfShipsLeft() > 0) {
+        for ($i = count($p->ships) - 1; $i >= 0; $i--) {
+            $row = rand(0, 7);
+            $col = rand(0, 7);
+            $dir = rand(0, 1);
+
+            //System.out.println("DEBUG: row-" + row + "; col-" + col + "; dir-" + dir);
+
+            while ($this->hasErrorsComp($row, $col, $dir, $p, $normCounter)) // while the random nums make error, start again
+            {
                 $row = rand(0, 7);
                 $col = rand(0, 7);
                 $dir = rand(0, 1);
+                //System.out.println("AGAIN-DEBUG: row-" + row + "; col-" + col + "; dir-" + dir);
+            }
 
-                //System.out.println("DEBUG: row-" + row + "; col-" + col + "; dir-" + dir);
-
-                while ($this->hasErrorsComp($row, $col, $dir, $p, $normCounter)) // while the random nums make error, start again
-                {
-                    $row = rand(0, 7);
-                    $col = rand(0, 7);
-                    $dir = rand(0, 1);
-                    //System.out.println("AGAIN-DEBUG: row-" + row + "; col-" + col + "; dir-" + dir);
-                }
-
-                //System.out.println("FURTHER DEBUG: row = " + row + "; col = " + col);
-                $p->ships[$normCounter]->setLocation($row, $col);
-                $p->ships[$normCounter]->setDirection($dir);
-                $p->playerGrid->addShip($p->ships[$normCounter]);
+            //System.out.println("FURTHER DEBUG: row = " + row + "; col = " + col);
+            $p->ships[$normCounter]->setLocation($row, $col);
+            $p->ships[$normCounter]->setDirection($dir);
+            $p->playerGrid->addShip($p->ships[$normCounter]);
 //                p.ships[normCounter].setLocation(row, col);
 //                p.ships[normCounter].setDirection(dir);
 //                p.playerGrid.addShip(p.ships[normCounter]);
 
-                $normCounter++;
-                $counter++;
-            }
-
+            $normCounter++;
+            $counter++;
         }
+//        }
     }
 
     private function hasErrorsComp($row, $col, $dir, Player $p, $count)

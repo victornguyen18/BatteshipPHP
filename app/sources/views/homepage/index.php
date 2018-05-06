@@ -1,4 +1,8 @@
 <?php
+echo 'limit2: ' . count(Session::get("limitRand2")) . '<br>';
+echo 'limit3: ' . count(Session::get("limitRand3")) . '<br>';
+echo 'limit4: ' . count(Session::get("limitRand4")) . '<br>';
+echo 'limit5: ' . count(Session::get("limitRand5")) . '<br>';
 $player = Session::get("player");
 $computer = Session::get("computer");
 echo "<br/>";

@@ -101,7 +101,7 @@ class Play extends Model
             while (!$shipMemory->isEmpty()) {
                 if ($shipMemory->peek()->isDestroyed()) {
                     //Get length of the ship the reduce count ship by length;
-                    $lengthShip = substr($shipMemory->peek()->getName(), 0, 1);
+                    $lengthShip = $shipMemory->peek()->getLength();
                     $countShip = Session::get('countShip');
                     $countShip[$lengthShip] = $countShip[$lengthShip] - 1;
                     Session::set('countShip', $countShip);
@@ -109,12 +109,6 @@ class Play extends Model
                     unset($locationMemory[$shipMemory->pop()->getName()]);
                     $count--;
                     //this mean there is no incompletely destroyed ship
-                    if ($count == 0) {
-                        //echo "<br/>";
-                        //echo "-HUNT-";
-                        //echo "<br/>";
-                        $guess = $this->hunt(0, 7, $difficulty);
-                    }
                 } else {
                     break;
                 }
@@ -124,6 +118,12 @@ class Play extends Model
             //echo "<br/>";
             $guess['row'] = $onFocus['row'];
             $guess['col'] = $onFocus['col'];
+            if ($count == 0) {
+                //echo "<br/>";
+                //echo "-HUNT-";
+                //echo "<br/>";
+                $guess = $this->hunt(0, 7, $difficulty);
+            }
         }
         $col = $guess['col'];
         $row = $guess['row'];
@@ -192,7 +192,7 @@ class Play extends Model
                         //Otherwise you can say that you just destroyed another ship luckily and you still have to handle with the first ship in the memory
                         if ($opponent->playerGrid->getGrid()[$row][$col]->getShip()->getName() == $shipMemory->peek()->getName()) {
                             //Get length of the ship the reduce count ship by length;
-                            $lengthShip = substr($shipMemory->peek()->getName(), 0, 1);
+                            $lengthShip = $shipMemory->peek()->getLength();
                             $countShip = Session::get('countShip');
                             $countShip[$lengthShip] = $countShip[$lengthShip] - 1;
                             Session::set('countShip', $countShip);
@@ -267,9 +267,9 @@ class Play extends Model
         if ($opponent->playerGrid->hasLost()) $data['result'] = "You win";
         else $data['result'] = "still playing" . $count;
 
-        //echo "<br/>shipMemory:<br/>>";
-        //print_r($shipMemory);
-        //echo "<br/>";
+//        echo "<br/>shipMemory:<br/>>";
+//        print_r($shipMemory);
+//        echo "<br/>";
 
         //echo "<br/>LocationMemory:<br/>>";
         //print_r($locationMemory);
