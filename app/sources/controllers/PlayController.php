@@ -13,6 +13,7 @@ class PlayController extends Controller
         parent::__construct();
     }
     function index(){
+        $this->view->render('play/index');
     }
 
     function playGame(){
