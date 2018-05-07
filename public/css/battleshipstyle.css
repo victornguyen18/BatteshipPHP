@@ -9,6 +9,124 @@ body{
 }
 
 
+/*NAVBAR*/
+#pheader{
+    background: #333333;
+    height: 123px;
+}
+#ptopnav{
+    border-bottom: 1px solid #FFF;
+    height: 60px;
+}
+.login-box {
+    margin-top: 13px;
+}
+.login-box a:first-child{
+    border-left: 0;
+}
+.login-box a{
+    color: #FFF;
+    padding:10px 20px;
+    text-transform: uppercase;
+    display: inline-block;
+    border-left:1px solid #FFF;
+    font-size: 15px;
+}
+.m-b-10{
+    margin-bottom: 10px;
+}
+.login-box a.lang{
+    border: 0;
+    padding: 0;
+}
+#pmainmenu .left-menu{
+    width: 42%;
+    float: left;
+    text-align: right;
+}
+#pmainmenu .right-menu{
+    width: 42%;
+    float: left;
+    text-align: left;
+}
+#pmainmenu .center-menu{
+    position: relative;
+    width: 15%;
+    height: 100px;
+    float: left;
+    text-align: center;
+    margin-top: -50px;
+}
+
+#pmainmenu .center-menu img{
+    position: absolute;
+    left: 0%;
+}
+
+#pmainmenu .left-menu,#pmainmenu .center-menu,#pmainmenu .right-menu {
+    display: block;
+}
+#pmainmenu  ul{
+    margin: 10px 0;
+    padding: 0;
+}
+#pmainmenu  ul li{
+    display: inline-block;
+    margin: 0;
+    padding: 10px;
+}
+#pmainmenu ul li.active a,#pmainmenu ul li a:hover{
+    border-bottom: 3px solid #FFF;
+}
+#pmainmenu ul li a{
+    color: #FFF;
+    padding: 0px ;
+    text-transform: uppercase;
+    display: inline-block;
+    font-size: 15px;
+    text-align: right;
+    border-bottom: 3px solid transparent;
+}
+
+#pslideshow img{
+    width: 100%;
+    height: 445px;
+}
+
+#pslideshow .pizza-logo img{
+    width:60%;
+    height: auto;
+    margin: 40px 0 0 0;
+}
+.carousel-caption{
+    top: 5%;
+    width: 387px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 0;
+}
+.btn-danger,.btn-danger:hover {
+    color: #fff;
+    background-color: #8f1f23;
+    border-color: #8f1f23;
+}
+
+.carousel-indicators .active {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    background-color: #fff;
+}
+.carousel-indicators li {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: #CCC;
+    border: 1px solid #b7b7b7;
+}
+
+/*END --- NAVBAR*/
+
+
 #myNavBar .navbar-nav {
     width: 100%;
     text-align: center;
