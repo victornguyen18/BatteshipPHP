@@ -175,6 +175,7 @@ $(function () {
         drop: handleDropWeapon
     });
 });
+var rowcolWeapon;
 function handleDropWeapon(event, ui) {
     ui.draggable.position({
         of: $(this),
@@ -182,6 +183,11 @@ function handleDropWeapon(event, ui) {
         at: 'left top'
     });
     ui.draggable.draggable('option', 'revert', false);
+    rowcolWeapon = $(this).attr('rel');
+    var rowW = parseInt(rowcolWeapon.split("")[1]);
+    var colW = parseInt(rowcolWeapon.split("")[2]);
+    alert("rowW: " + rowW);
+    alert("colW: " + colW);
 }
 
 $('.radar').mousedown(function(){
