@@ -336,12 +336,14 @@ body{
 
 /*END --- WEAPONS*/
 
+
+/*BATTLE*/
 .battle-board {
     width: 360px;
     display: inline-block;
     padding: 0;
     vertical-align: middle;
-    margin: 5%;
+    margin: 20px;
 }
 
 .battle-location{
@@ -354,6 +356,31 @@ body{
     float: left;
 }
 
+.weapons-container{
+    display: inline-block;
+    width: 200px;
+}
+
+.radar {
+    position: absolute;
+    text-align: center;
+}
+
+.radar img{
+    height: 119px;
+    width: 119px;
+}
+
+.bomb {
+    position: absolute;
+    text-align: center;
+}
+.bomb img{
+    height: 119px;
+    width: 119px;
+}
+
+/*END --- BATTLE*/
 /************************************
                 FOOTER
 ************************************/

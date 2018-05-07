@@ -155,6 +155,56 @@ function handleDrop(event, ui) {
     ui.draggable.draggable('option', 'revert', false);
 }
 
+$(function () {
+    $('.draggableWeapon').draggable({
+        cursor: 'move',
+        snap: true,
+        helper: 'clone',
+        start: function (event, ui) {
+            $(this).draggable("option", "cursorAt", {
+                left: Math.floor(ui.helper.width() / 2),
+                top: Math.floor(ui.helper.height() / 2)
+            });
+        }
+    });
+});
+
+$(function () {
+    $('.battle-location').droppable({
+        accept: ".draggableWeapon",
+        drop: handleDropWeapon
+    });
+});
+function handleDropWeapon(event, ui) {
+    ui.draggable.position({
+        of: $(this),
+        my: 'left top',
+        at: 'left top'
+    });
+    ui.draggable.draggable('option', 'revert', false);
+}
+
+$('.radar').mousedown(function(){
+    $(this).css({
+        'background-color' : 'rgba(255,255,255,0.5)',
+        'width' : '119px',
+        'height' : '119px'
+    });
+});
+
+$('.bomb').mousedown(function(){
+    $(this).children('img').css({
+       'width' : '79px',
+       'height' : '79px'
+    });
+    $(this).css({
+        'background-color' : 'rgba(0,0,0,0.5)',
+        'width' : '159px',
+        'height' : '79px'
+    });
+});
+
+
 // Get location in battle
 
 $('.battle-location').click(function(){
