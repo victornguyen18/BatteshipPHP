@@ -1,4 +1,6 @@
-
+<div class="container" style="height: 100px; padding: 0;">
+    <img src="<?php echo URL; ?>img/surface.gif" style="height: 100px; width: 100%;" alt="" />
+</div>
 <?php
 $player = Session::get("player");
 $computer = Session::get("computer");
@@ -16,7 +18,7 @@ foreach ($player->getShips() as $ship){
            {
                 var row = parseInt(<?php echo $ship->getRow();?>);
                 var col = parseInt(<?php echo $ship->getCol();?>);
-               $("#p" + row + col).css('background', 'url("<?php echo URL; ?>img/h_ship_head.jpg")');
+               $("#p" + row + col).css('background', 'url("<?php echo URL; ?>img/h_ship_head.png")');
                $("#p" + row + col).css('background-size', '40px 40px');
                 for (var i = 1; i < parseInt(<?php echo $ship->getLength();?>) - 1; i++) {
                     row = parseInt(<?php echo $ship->getRow();?>);
@@ -25,7 +27,7 @@ foreach ($player->getShips() as $ship){
                    $("#p" + row + col).css('background-size', '40px 40px');
                }
                col++;
-               $("#p" + row + col).css('background', 'url("<?php echo URL; ?>img/h_ship_tail.jpg")');
+               $("#p" + row + col).css('background', 'url("<?php echo URL; ?>img/h_ship_tail.png")');
                $("#p" + row + col).css('background-size', '40px 40px');
 
            }
@@ -34,7 +36,7 @@ foreach ($player->getShips() as $ship){
                // VERTICAL
                 var row = parseInt(<?php echo $ship->getRow();?>);
                 var col = parseInt(<?php echo $ship->getCol();?>);
-               $("#p" + row + col).css('background', 'url("<?php echo URL; ?>img/v_ship_head.jpg")');
+               $("#p" + row + col).css('background', 'url("<?php echo URL; ?>img/v_ship_head.png")');
                $("#p" + row + col).css('background-size', '40px 40px');
                 for (var i = 1; i < parseInt(<?php echo $ship->getLength();?>) - 1; i++) {
                     var row = parseInt(<?php echo $ship->getRow();?>) + i;
@@ -43,7 +45,7 @@ foreach ($player->getShips() as $ship){
                     $("#p" + row + col).css('background-size', '40px 40px');
                }
                row++;
-               $("#p" + row + col).css('background', 'url("<?php echo URL; ?>img/v_ship_tail.jpg")');
+               $("#p" + row + col).css('background', 'url("<?php echo URL; ?>img/v_ship_tail.png")');
                $("#p" + row + col).css('background-size', '40px 40px');
            }
        });
