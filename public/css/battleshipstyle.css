@@ -8,8 +8,16 @@ body{
     font-family: "Flama Condensed Medium";
 }
 
-
-/*NAVBAR*/
+a,a:hover,a:focus{
+    text-decoration: none;
+    color: #333333;
+}
+*{
+    outline:none;
+}
+body{
+    line-height: 25px;
+}
 #pheader{
     background: #333333;
     height: 123px;
@@ -124,8 +132,6 @@ body{
     border: 1px solid #b7b7b7;
 }
 
-/*END --- NAVBAR*/
-
 /*CHOOSE MODE*/
 .btn-select{
     padding: 20px 40px;
@@ -143,7 +149,6 @@ body{
 /*END --- CHOOSE MODE*/
 
 
-
 #myNavBar .navbar-nav {
     width: 100%;
     text-align: center;
@@ -153,6 +158,11 @@ body{
     float: none;
     vertical-align: middle;
 }
+
+#myNavBar .navbar-nav li a:hover{
+    background: none;
+}
+
 #myNavBar .navbar-nav a{
     padding-left: 30px;
     padding-right: 30px;
@@ -167,7 +177,6 @@ body{
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
-
 .logo-border {
     width: 200px;
     height: 200px;
@@ -327,12 +336,14 @@ body{
 
 /*END --- WEAPONS*/
 
+
+/*BATTLE*/
 .battle-board {
     width: 360px;
     display: inline-block;
     padding: 0;
     vertical-align: middle;
-    margin: 5%;
+    margin: 20px;
 }
 
 .battle-location{
@@ -343,9 +354,33 @@ body{
     display: inline-block;
     margin: 0;
     float: left;
-    background-size: 40px 40px;
 }
 
+.weapons-container{
+    display: inline-block;
+    width: 200px;
+}
+
+.radar {
+    position: absolute;
+    text-align: center;
+}
+
+.radar img{
+    height: 119px;
+    width: 119px;
+}
+
+.bomb {
+    position: absolute;
+    text-align: center;
+}
+.bomb img{
+    height: 119px;
+    width: 119px;
+}
+
+/*END --- BATTLE*/
 /************************************
                 FOOTER
 ************************************/
