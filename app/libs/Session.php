@@ -42,4 +42,8 @@ class Session
             unset($_SESSION[$key]);
         }
     }
+    public static function destroyAll(){
+        session_start();
+        session_destroy();
+    }
 }

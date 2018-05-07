@@ -191,5 +191,5 @@
             </div>
         </div>
     </div>
-    <a class="btn btn-default btn-lg next continue-btn" href="#">Continue</a>
+    <a class="btn btn-default btn-lg next continue-btn" href="../play/battle">Continue</a>
 </div>

@@ -5,11 +5,9 @@
 $player = Session::get("player");
 $computer = Session::get("computer");
 foreach ($player->getShips() as $ship){
-    echo "</br>Ship " . $ship->getName() . "</br>";
-    print_r($ship);
     echo "</br>";
+    print_r($ship);
 }
-echo Session::get("messages");
 ?>
 
 <?php foreach ($player->getShips() as $ship) : ?>
@@ -131,6 +129,7 @@ echo Session::get("messages");
                         }
                         if(o.result == 1){
                             alert("CONGRATULATION!! You win.");
+                            $(".title").html("YOU WIN");
                         }
                         // AFTER PLAYER MAKE A GUESS, COMPUTER WILL ALSO MAKE A GUESS
                         $.get('/play/playGame', {"player":"computer"}, function (o) {
@@ -159,26 +158,13 @@ echo Session::get("messages");
                             }
                             if(o.result == 1){
                                 alert("TOO BAD!! You loose.");
+                                $(".title").html("YOU LOOSE");
                             }
                         }, "json");
                     }
 
                 },"json");
             }
-
-            // $.post('/Play/playGame', {}, function (o) {
-            //     // $locationMemory = Session::get("locationMemory");
-            //     // $onFocus = Session::get("onFocus");
-            //     console.log(o);
-            //     $("#" + o.col.toString() + o.row.toString()).html(o.status.toString());
-            //     $("#" + o.col.toString() + o.row.toString()).css('color', 'red');
-            //     $("#status").html(o.status.toString());
-            //     $("#result").html(o.result.toString());
-            //     if(o.result.toString() === "You win") {
-            //         alert(o.result.toString());
-            //         $("#hit").prop("disabled", true);
-            //     }
-            // }, "json");
         });
     });
 </script>
@@ -220,4 +206,5 @@ echo Session::get("messages");
         <?php endfor;?>
 
     </div>
+    <a href="<?php echo URL;?>/play/result" class="btn btn-select"></a>
 </div>

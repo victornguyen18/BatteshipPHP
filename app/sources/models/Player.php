@@ -11,15 +11,23 @@ class Player extends Model
 
     private static $SHIP_LENGTHS = array(2, 2, 2, 2, 3, 3, 3, 4, 4, 5);
     private static $NUMBER_OF_SHIPS = 10;
-    private $score;
+    public $score;
     public $ships;
     public $playerGrid;
+    public $items;
 
     public function __construct()
     {
         parent::__construct();
+        $this->reset();
+        $this->score = 300;
+        $this->items = array();
+        $this->items["radar"] = 0;
+        $this->items["bomb"] = 0;
+    }
+
+    public function reset(){
         $this->ships = array();
-        $nameTemp = '';
         $this->ships[0] = new Ship(2, '2A');
         $this->ships[1] = new Ship(2, '2B');
         $this->ships[2] = new Ship(2, '2C');
@@ -31,7 +39,6 @@ class Player extends Model
         $this->ships[8] = new Ship(4, '4B');
         $this->ships[9] = new Ship(5, '5A');
         $this->playerGrid = new Grid();
-        $this->score = 0;
     }
 
     public function addShips()
@@ -43,10 +50,9 @@ class Player extends Model
 
     public function numOfShipsLeft()
     {
-        $counter = static::$NUMBER_OF_SHIPS;
+        $counter = 10;
         foreach ($this->ships as $s) {
-            if ($s->isLocationSet() and $s->isDirectionSet())
-                $counter--;
+            if ($s->isLocationSet() and $s->isDirectionSet()) $counter--;
         }
         return $counter;
     }
@@ -104,5 +110,15 @@ class Player extends Model
     {
         $this->score += $score;
     }
-
+    public function addItem($item, $quantity)
+    {
+        $this->items[$item] += (int)$quantity;
+    }
+    public function useItem($item){
+        $this->items[$item]--;
+    }
+    public function getItems()
+    {
+        return $this->items;
+    }
 }

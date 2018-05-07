@@ -16,7 +16,7 @@ class Play extends Model
             $guess['row'] = $row;
             $guess['col'] = $col;
         }
-        if ($difficulty == "normal") {
+        if ($difficulty == "medium") {
             $limitRand = Session::get('limitRand2');
             $i = rand(0, count(Session::get('limitRand2')) - 1);
             $col = $limitRand[$i]['col'];
@@ -82,7 +82,7 @@ class Play extends Model
         return $guess;
     }
 
-    public function playGame(Player $player, Player $opponent, $difficulty = "easy")
+    public function playGame(Player $player, Player $opponent, $difficulty = "easy", $rowI = 0, $colI = 0, $useItem = false)
     {
         $count = Session::get("count");
         $shipMemory = Session::get("shipMemory");
@@ -127,6 +127,10 @@ class Play extends Model
         }
         $col = $guess['col'];
         $row = $guess['row'];
+        if($useItem){
+            $row = $rowI;
+            $col = $colI;
+        }
         while ($opponent->playerGrid->alreadyGuessed($row, $col)) {
             if ($count > 0) { // on Target Mode
                 //echo "<br/>";
@@ -237,6 +241,7 @@ class Play extends Model
         $data['status'] = $status;
         $data['count'] = $count;
         $data['score'] = $opponent->getScore();
+        $data['difficulty'] = $difficulty;
         Session::set("player", $opponent);
         Session::set("computer", $player);
         Session::set("shipMemory", $shipMemory);
@@ -246,7 +251,7 @@ class Play extends Model
         Session::set("col", $col);
         Session::set("row", $row);
         //Remove location in radomLimit;
-        if ($difficulty == "normal") {
+        if ($difficulty == "medium") {
             $delete = array("row" => $row, "col" => $col);
             $indexDel = array_search($delete, Session::get('limitRand2'), true);
             if ($indexDel != '') {
@@ -269,9 +274,16 @@ class Play extends Model
             }
         }
 
-        if ($opponent->playerGrid->hasLost()) $data['result'] = 1;
-        else $data['result'] = 0;
-        $data['temp'] = $opponent->playerGrid->getPoint();
+        if ($opponent->playerGrid->hasLost()) {
+            Session::set("result", 0);
+            $data['result'] = 1;
+            Session::set("mode",null);
+            Session::set("difficulty", null);
+        }
+        else {
+            Session::set("result", -1);
+            $data['result'] = 0;
+        }
 
 //        echo "<br/>shipMemory:<br/>>";
 //        print_r($shipMemory);
@@ -304,6 +316,8 @@ class Play extends Model
         $shipInfo['row'] = $row;
         $shipInfo['col'] = $col;
         $shipInfo['direction'] = $direction;
+        $shipInfo['numOfShipsLeft'] = $player->numOfShipsLeft();
+        Session::set("player",$player);
         echo json_encode($shipInfo);
     }
 
@@ -335,11 +349,69 @@ class Play extends Model
                 $data['status'] = 0;
             }
         }
-        if ($opponent->playerGrid->hasLost()) $data['result'] = 1;
-        else $data['result'] = 0;
+        if ($opponent->playerGrid->hasLost()) {
+            $data['result'] = 1;
+            Session::set("result", 1);
+            Session::set("mode",null);
+            Session::set("difficulty", null);
+        }
+        else {
+            Session::set("result", -1);
+            $data['result'] = 0;
+        }
 
         echo json_encode($data);
         Session::set("player", $player);
         Session::set("computer", $opponent);
+    }
+
+    public function buyItem(Player $player, $item, $quantity){
+        $player->addItem($item,$quantity);
+        $items = $player->getItems();
+        echo json_encode($items);
+    }
+
+    public function useItem(Player $player, Player $opponent, $item, $row, $col){
+        $player->useItem($item);
+        if($item == "radar"){
+            $rowZONE = 8;
+            $colZONE = 8;
+            for($r = 0; $r < $rowZONE; $r++){
+                if(!$opponent->playerGrid->alreadyGuessed($col, $r)){
+                    if($player == Session::get("player")){
+                        $this->playerMakeGuess($player, $opponent, $col, $r);
+                    }
+                    elseif ($player == Session::get("computer")){
+                        $this->playGame($player, $opponent, Session::get("difficulty"), $col, $r,true);
+                    }
+                }
+            }
+            for($c = 0; $c < $colZONE; $c++){
+                if(!$opponent->playerGrid->alreadyGuessed($row, $c)){
+                    if($player == Session::get("player")){
+                        $this->playerMakeGuess($player, $opponent, $row, $c);
+                    }
+                    elseif ($player == Session::get("computer")){
+                        $this->playGame($player, $opponent, Session::get("difficulty"), $row, $c,true);
+                    }
+                }
+            }
+        }
+        elseif($item == "bomb"){
+            $rowZONE = 1;
+            $colZONE = 1;
+            for($r = ((($row-$rowZONE) < 0) ? 0 : $row-$rowZONE); $r < ((($row+$rowZONE) > 7) ? 7 : $row+$rowZONE) ; $r++){
+                for($c = ((($col-$colZONE) < 0) ? 0 : $col-$colZONE); $c < ((($col-$colZONE) > 7) ? 7 : $col-$colZONE) ; $c++){
+                    if(!$opponent->playerGrid->alreadyGuessed($r, $c)){
+                        if($player == Session::get("player")){
+                            $this->playerMakeGuess($player, $opponent, $r, $c);
+                        }
+                        elseif ($player == Session::get("computer")){
+                            $this->playGame($player, $opponent, Session::get("difficulty"), $r, $c,true);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

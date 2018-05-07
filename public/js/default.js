@@ -169,11 +169,25 @@ function handleDrop(event, ui) {
 };
 $(function () {
     $(".continue-btn").click(function () {
-        for (var value in data){
-            console.log(data[value]);
-            $.get("../play/shipSetting", data[value], function (o) {
-                alert("OK");
-            }, 'json');
+        if(Object.keys(data).length == 10){
+            for (var value in data){
+                console.log(data[value]);
+                // $.get("../play/shipSetting", data[value], function (o) {
+                // }, 'json');
+                $.ajax({
+                    url: "../play/shipSetting",
+                    type: "GET",
+                    data: data[value],
+                    dataType: "json",
+                    async : false,
+                    success : function (result) {
+                    }
+                });
+            }
+        }
+        else{
+            alert("not so fast");
+            return false;
         }
     });
 });
