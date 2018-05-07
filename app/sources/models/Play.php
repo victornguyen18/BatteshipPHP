@@ -105,7 +105,7 @@ class Play extends Model
                     $countShip = Session::get('countShip');
                     $countShip[$lengthShip] = $countShip[$lengthShip] - 1;
                     Session::set('countShip', $countShip);
-                    $opponent->addScore(10);
+//                    $opponent->addScore(10);
                     unset($locationMemory[$shipMemory->pop()->getName()]);
                     $count--;
                     //this mean there is no incompletely destroyed ship
@@ -168,7 +168,7 @@ class Play extends Model
         // If the shot hit a ship
         if ($opponent->playerGrid->hasShip($row, $col)) {
             $opponent->playerGrid->markHit($row, $col);
-            $opponent->addScore(5);
+//            $opponent->addScore(5);
             $status = $opponent->playerGrid->getStatus($row, $col);
             if ($count == 0) { // first Hit
                 $shipMemory->push($opponent->playerGrid->getGrid()[$row][$col]->getShip());
@@ -196,7 +196,7 @@ class Play extends Model
                             $countShip = Session::get('countShip');
                             $countShip[$lengthShip] = $countShip[$lengthShip] - 1;
                             Session::set('countShip', $countShip);
-                            $opponent->addScore(10);
+//                            $opponent->addScore(10);
                             unset($locationMemory[$shipMemory->pop()->getName()]);
 
                         }
@@ -212,6 +212,11 @@ class Play extends Model
 //                            //echo "<br/>";
 //                            //echo "<br/>";
 //                        }
+                        $data['isDestroyed'] = 1;
+                        $data['destroyedShipROW'] = $opponent->playerGrid->getGrid()[$row][$col]->getShip()->getRow();
+                        $data['destroyedShipCOL'] = $opponent->playerGrid->getGrid()[$row][$col]->getShip()->getCol();
+                        $data['destroyedShipDIRECTION'] = $opponent->playerGrid->getGrid()[$row][$col]->getShip()->getDirection();
+                        $data['destroyedShipLENGTH'] = $opponent->playerGrid->getGrid()[$row][$col]->getShip()->getLength();
                     }
                 } // if the ship is new
                 else {
@@ -264,8 +269,9 @@ class Play extends Model
             }
         }
 
-        if ($opponent->playerGrid->hasLost()) $data['result'] = "You win";
-        else $data['result'] = "still playing" . $count;
+        if ($opponent->playerGrid->hasLost()) $data['result'] = 1;
+        else $data['result'] = 0;
+        $data['temp'] = $opponent->playerGrid->getPoint();
 
 //        echo "<br/>shipMemory:<br/>>";
 //        print_r($shipMemory);
@@ -301,4 +307,39 @@ class Play extends Model
         echo json_encode($shipInfo);
     }
 
+    public function playerMakeGuess(Player $player, Player $opponent, $row, $col){
+        $data['row'] = $row;
+        $data['col'] = $col;
+        $data['status'] = -1; // -1: already guess | 0: missed | 1: hit
+        $data['result'] = 0; // 0: still playing | 1: you win
+        $data['isDestroyed'] = 0; // 0: nothing happen || 1:you just destroyed a Ship
+        if($opponent->playerGrid->alreadyGuessed($row, $col)){
+            $data['status'] = -1;
+        }
+        else{
+            if($opponent->playerGrid->hasShip($row, $col)){
+                $opponent->playerGrid->markHit($row, $col);
+                $player->addScore(5);
+                $data['status'] = 1;
+                if ($opponent->playerGrid->getGrid()[$row][$col]->getShip()->isDestroyed()) {
+                    $player->addScore(10);
+                    $data['isDestroyed'] = 1;
+                    $data['destroyedShipROW'] = $opponent->playerGrid->getGrid()[$row][$col]->getShip()->getRow();
+                    $data['destroyedShipCOL'] = $opponent->playerGrid->getGrid()[$row][$col]->getShip()->getCol();
+                    $data['destroyedShipDIRECTION'] = $opponent->playerGrid->getGrid()[$row][$col]->getShip()->getDirection();
+                    $data['destroyedShipLENGTH'] = $opponent->playerGrid->getGrid()[$row][$col]->getShip()->getLength();
+                }
+            }
+            else{
+                $opponent->playerGrid->markMiss($row, $col);
+                $data['status'] = 0;
+            }
+        }
+        if ($opponent->playerGrid->hasLost()) $data['result'] = 1;
+        else $data['result'] = 0;
+
+        echo json_encode($data);
+        Session::set("player", $player);
+        Session::set("computer", $opponent);
+    }
 }

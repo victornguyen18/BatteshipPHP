@@ -28,6 +28,11 @@ class PlayController extends Controller
     }
 
     function playGame(){
-        $this->model->playGame(Session::get("computer"), Session::get("player"));
+        if (isset($_GET['player']) and $_GET['player'] == "player"){
+            $this->model->playerMakeGuess(Session::get("player"), Session::get("computer"), $_GET['row'], $_GET['col']);
+        }
+        elseif (isset($_GET['player']) and $_GET['player'] == "computer"){
+            $this->model->playGame(Session::get("computer"), Session::get("player"), Session::get("difficulty"));
+        }
     }
 }

@@ -54,7 +54,6 @@ class HomepageController extends Controller
                     $this->limitRand5[count($this->limitRand5)] = array('row' => $row, 'col' => $col);
                 }
             }
-        self::$computer = new Player();
         self::$shipMemory = new Queue(10);
         self::$locationMemory = array();
         self::$onFocus = array();
@@ -66,6 +65,7 @@ class HomepageController extends Controller
     {
         Session::set("player", self::$player);
         Session::set("computer", self::$computer);
+        Session::set("difficulty", "easy");
         Session::set("count", 0);
         Session::set("shipMemory", self::$shipMemory);
         Session::set("onFocus", self::$onFocus);

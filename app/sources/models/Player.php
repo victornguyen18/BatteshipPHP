@@ -61,16 +61,19 @@ class Player extends Model
     {
         $available = true;
         if ($direction == 0) { // Horizontal
-            for ($i = $col; $i < $this->playerGrid->numCols(); $i++) {
+            for ($i = $col; $i < ((($col + $s->getLength()) < 8) ? ($col + $s->getLength()) : $this->playerGrid->numCols()); $i++) {
                 if ($this->playerGrid->getGrid()[$row][$i]->hasShip()) {
                     Session::set('messages', 'ERROR! Unavailable location/default');
+                    echo "has ship horizontal" . $s->getName() . $row . $i;
                     $available = false;
                 }
             }
         } else { // Vertical
-            for ($i = $row; $i < $this->playerGrid->numRows(); $i++) {
+
+            for ($i = $row; $i < ((($row + $s->getLength()) < 8) ? ($row + $s->getLength()) : $this->playerGrid->numRows()); $i++) {
                 if ($this->playerGrid->getGrid()[$i][$col]->hasShip()) {
                     Session::set('messages', 'ERROR! Unavailable location/default');
+                    echo "has ship vertical" . $s->getName() .$i . $col;
                     $available = false;
                 }
             }

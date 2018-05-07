@@ -39,7 +39,7 @@ $(function () {
 });
 var shipName;
 var rowcol;
-var data = [];
+var data = {};
 
 function handleDrop(event, ui) {
     var row = 0;
@@ -55,8 +55,8 @@ function handleDrop(event, ui) {
             rowcol = $(this).prop("id");
             row = parseInt(rowcol.split("")[0]);
             col = parseInt(rowcol.split("")[1]);
-            alert("row: " + row);
-            alert("col: " + col);
+            // alert("row: " + row);
+            // alert("col: " + col);
         }
         else                                // vertical
         {
@@ -68,8 +68,8 @@ function handleDrop(event, ui) {
             rowcol = $(this).prop("id");
             row = parseInt(rowcol.split("")[0]);
             col = parseInt(rowcol.split("")[1]);
-            alert("row: " + row);
-            alert("col: " + col);
+            // alert("row: " + row);
+            // alert("col: " + col);
         }
 
     }
@@ -84,8 +84,8 @@ function handleDrop(event, ui) {
             rowcol = $(this).prop("id");
             row = parseInt(rowcol.split("")[0]);
             col = parseInt(rowcol.split("")[1]) - 1;
-            alert("row: " + row);
-            alert("col: " + col);
+            // alert("row: " + row);
+            // alert("col: " + col);
         }
         else                                // vertical
         {
@@ -97,8 +97,8 @@ function handleDrop(event, ui) {
             rowcol = $(this).prop("id");
             row = parseInt(rowcol.split("")[0]) - 1;
             col = parseInt(rowcol.split("")[1]);
-            alert("row: " + row);
-            alert("col: " + col);
+            // alert("row: " + row);
+            // alert("col: " + col);
         }
     }
     else if (ui.draggable.prop("class").match("4")) {
@@ -112,8 +112,8 @@ function handleDrop(event, ui) {
             rowcol = $(this).prop("id");
             row = parseInt(rowcol.split("")[0]);
             col = parseInt(rowcol.split("")[1]) - 1;
-            alert("row: " + row);
-            alert("col: " + col);
+            // alert("row: " + row);
+            // alert("col: " + col);
         }
         else                                // vertical
         {
@@ -125,8 +125,8 @@ function handleDrop(event, ui) {
             rowcol = $(this).prop("id");
             row = parseInt(rowcol.split("")[0]) - 1;
             col = parseInt(rowcol.split("")[1]);
-            alert("row: " + row);
-            alert("col: " + col);
+            // alert("row: " + row);
+            // alert("col: " + col);
         }
     }
     else if (ui.draggable.prop("class").match("5")) {
@@ -140,8 +140,8 @@ function handleDrop(event, ui) {
             rowcol = $(this).prop("id");
             row = parseInt(rowcol.split("")[0]);
             col = parseInt(rowcol.split("")[1]) - 2;
-            alert("row: " + row);
-            alert("col: " + col);
+            // alert("row: " + row);
+            // alert("col: " + col);
         }
         else                                // vertical
         {
@@ -153,37 +153,30 @@ function handleDrop(event, ui) {
             rowcol = $(this).prop("id");
             row = parseInt(rowcol.split("")[0]) - 2;
             col = parseInt(rowcol.split("")[1]);
-            alert("row: " + row);
-            alert("col: " + col);
+            // alert("row: " + row);
+            // alert("col: " + col);
         }
-
     }
     shipName = ui.draggable.prop("id");
     shipDirection = ui.draggable.attr("rel");
     ui.draggable.draggable('option', 'revert', false);
-    data.push(
-        {
-            "shipName" : shipName,
-            "row": row,
-            "col": col,
-            "direction": shipDirection
-        }
-    );
+    data[shipName] = {
+        "shipName": shipName,
+        "row": row,
+        "col": col,
+        "direction": shipDirection
+    };
 };
 $(function () {
     $(".continue-btn").click(function () {
-        data.forEach(function (value) {
-            console.log(JSON.stringify(value));
-            $.get("../play/shipSetting", value, function (o) {
-                    alert("OK");
-                }, 'json');
-        });
+        for (var value in data){
+            console.log(data[value]);
+            $.get("../play/shipSetting", data[value], function (o) {
+                alert("OK");
+            }, 'json');
+        }
     });
 });
-
-
-// Show ships arranged by player
-
 
 // Next button click event
 $('.next').click(function () {
