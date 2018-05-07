@@ -19,6 +19,14 @@ class PlayController extends Controller
         $this->view->render('play/battle');
     }
 
+    function chooseMode(){
+        $this->view->render('play/chooseMode');
+    }
+
+    function chooseDifficulty(){
+        $this->view->render('play/chooseDifficulty');
+    }
+
     function playGame(){
         $this->model->playGame(Session::get("computer"), Session::get("player"));
     }
