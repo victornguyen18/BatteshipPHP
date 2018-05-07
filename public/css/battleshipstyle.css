@@ -207,4 +207,5 @@ body{
     display: inline-block;
     margin: 0;
     float: left;
+    background-size: 40px 40px;
 }
