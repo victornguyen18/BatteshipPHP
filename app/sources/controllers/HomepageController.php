@@ -22,10 +22,11 @@ class HomepageController extends Controller
     function __construct()
     {
         self::$player = new Player();
+        self::$computer = new Player();
         /*Be careful with the length of the ship
         The ship may be set out of the grid's range
         */
-        $this->setupComputer(self::$player);
+        $this->setupComputer(self::$computer);
 //        self::$player->chooseShipLocation(self::$player->ships[0], 0, 0, 1); // 2A
 //        self::$player->chooseShipLocation(self::$player->ships[1], 2, 0, 1); // 2B
 //        self::$player->chooseShipLocation(self::$player->ships[2], 4, 0, 1); // 2C

@@ -1,4 +1,6 @@
+<script>
 
+</script>
 <div class="container">
     <div class="title">PLACE YOUR SHIPS</div>
     <div class="frame" id="frame">
@@ -140,5 +142,5 @@
             </div>
         </div>
     </div>
-    <a class="btn btn-default btn-lg next" href="#">Continue</a>
+    <a class="btn btn-default btn-lg next continue-btn" href="#">Continue</a>
 </div>

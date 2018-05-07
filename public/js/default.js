@@ -1,19 +1,22 @@
-$('.draggable').dblclick(function () {
-    // alert($(this).attr("rel"));
-    if ($(this).attr("rel") == 0) {
-        $(this).css("transform", " rotate(90deg)");
-        $(this).css("-webkit-transform", " rotate(90deg)");
-        $(this).css("-ms-transform", " rotate(90deg)");
+$(function () {
+    $('.draggable').dblclick(function () {
+        // alert($(this).attr("rel"));
+        if ($(this).attr("rel") == 0) {
+            $(this).css("transform", " rotate(90deg)");
+            $(this).css("-webkit-transform", " rotate(90deg)");
+            $(this).css("-ms-transform", " rotate(90deg)");
 
-        $(this).attr("rel", "1");
-    }
-    else {
-        $(this).css("transform", " rotate(0deg)");
-        $(this).css("-webkit-transform", " rotate(0deg)");
-        $(this).css("-ms-transform", " rotate(0deg)");
-        $(this).attr("rel", "0");
-    }
+            $(this).attr("rel", "1");
+        }
+        else {
+            $(this).css("transform", " rotate(0deg)");
+            $(this).css("-webkit-transform", " rotate(0deg)");
+            $(this).css("-ms-transform", " rotate(0deg)");
+            $(this).attr("rel", "0");
+        }
+    });
 });
+
 $(function () {
     $('.draggable').draggable({
         cursor: 'move',
@@ -36,7 +39,11 @@ $(function () {
 });
 var shipName;
 var rowcol;
+var data = [];
+
 function handleDrop(event, ui) {
+    var row = 0;
+    var col = 0;
     if (ui.draggable.prop("class").match("2")) {
         if (ui.draggable.attr("rel") == "0") // horizontal
         {
@@ -46,8 +53,8 @@ function handleDrop(event, ui) {
                 at: 'left top'
             });
             rowcol = $(this).prop("id");
-            var row = parseInt(rowcol.split("")[0]);
-            var col = parseInt(rowcol.split("")[1]);
+            row = parseInt(rowcol.split("")[0]);
+            col = parseInt(rowcol.split("")[1]);
             alert("row: " + row);
             alert("col: " + col);
         }
@@ -59,8 +66,8 @@ function handleDrop(event, ui) {
                 at: 'left top'
             });
             rowcol = $(this).prop("id");
-            var row = parseInt(rowcol.split("")[0]);
-            var col = parseInt(rowcol.split("")[1]);
+            row = parseInt(rowcol.split("")[0]);
+            col = parseInt(rowcol.split("")[1]);
             alert("row: " + row);
             alert("col: " + col);
         }
@@ -75,8 +82,8 @@ function handleDrop(event, ui) {
                 at: 'left top'
             });
             rowcol = $(this).prop("id");
-            var row = parseInt(rowcol.split("")[0]);
-            var col = parseInt(rowcol.split("")[1])-1;
+            row = parseInt(rowcol.split("")[0]);
+            col = parseInt(rowcol.split("")[1]) - 1;
             alert("row: " + row);
             alert("col: " + col);
         }
@@ -88,8 +95,8 @@ function handleDrop(event, ui) {
                 at: 'left top'
             });
             rowcol = $(this).prop("id");
-            var row = parseInt(rowcol.split("")[0])-1;
-            var col = parseInt(rowcol.split("")[1]);
+            row = parseInt(rowcol.split("")[0]) - 1;
+            col = parseInt(rowcol.split("")[1]);
             alert("row: " + row);
             alert("col: " + col);
         }
@@ -103,8 +110,8 @@ function handleDrop(event, ui) {
                 at: 'left top'
             });
             rowcol = $(this).prop("id");
-            var row = parseInt(rowcol.split("")[0]);
-            var col = parseInt(rowcol.split("")[1])-1;
+            row = parseInt(rowcol.split("")[0]);
+            col = parseInt(rowcol.split("")[1]) - 1;
             alert("row: " + row);
             alert("col: " + col);
         }
@@ -116,8 +123,8 @@ function handleDrop(event, ui) {
                 at: 'left top'
             });
             rowcol = $(this).prop("id");
-            var row = parseInt(rowcol.split("")[0])-1;
-            var col = parseInt(rowcol.split("")[1]);
+            row = parseInt(rowcol.split("")[0]) - 1;
+            col = parseInt(rowcol.split("")[1]);
             alert("row: " + row);
             alert("col: " + col);
         }
@@ -131,8 +138,8 @@ function handleDrop(event, ui) {
                 at: 'left top'
             });
             rowcol = $(this).prop("id");
-            var row = parseInt(rowcol.split("")[0]);
-            var col = parseInt(rowcol.split("")[1])-2;
+            row = parseInt(rowcol.split("")[0]);
+            col = parseInt(rowcol.split("")[1]) - 2;
             alert("row: " + row);
             alert("col: " + col);
         }
@@ -144,23 +151,34 @@ function handleDrop(event, ui) {
                 at: 'left top-80'
             });
             rowcol = $(this).prop("id");
-            var row = parseInt(rowcol.split("")[0])-2;
-            var col = parseInt(rowcol.split("")[1]);
+            row = parseInt(rowcol.split("")[0]) - 2;
+            col = parseInt(rowcol.split("")[1]);
             alert("row: " + row);
             alert("col: " + col);
         }
 
     }
     shipName = ui.draggable.prop("id");
+    shipDirection = ui.draggable.attr("rel");
     ui.draggable.draggable('option', 'revert', false);
-}
-
-// Get location in battle
-
-$('.battle-location').click(function(){
-    var rel = $(this).attr('rel');
-    alert(rel);
-    $(this).css('background-color','red');
+    data.push(
+        {
+            "shipName" : shipName,
+            "row": row,
+            "col": col,
+            "direction": shipDirection
+        }
+    );
+};
+$(function () {
+    $(".continue-btn").click(function () {
+        data.forEach(function (value) {
+            console.log(JSON.stringify(value));
+            $.get("../play/shipSetting", value, function (o) {
+                    alert("OK");
+                }, 'json');
+        });
+    });
 });
 
 

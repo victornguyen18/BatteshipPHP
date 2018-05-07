@@ -287,5 +287,18 @@ class Play extends Model
         echo json_encode($data);
     }
 
+    public function shipSetting(Player $player, $shipName, $row, $col, $direction){
+        foreach ($player->getShips() as $ship){
+            if($ship->getName() == $shipName){
+                $player->chooseShipLocation($ship, $row, $col, $direction);
+                break;
+            }
+        }
+        $shipInfo['shipName'] = $shipName;
+        $shipInfo['row'] = $row;
+        $shipInfo['col'] = $col;
+        $shipInfo['direction'] = $direction;
+        echo json_encode($shipInfo);
+    }
 
 }
