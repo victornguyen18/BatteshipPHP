@@ -149,43 +149,43 @@
                 <div class="ship-container">
                     <!--SHIP 2-->
                     <div class="draggable ship-2" id="2A" rel="0">
-                        <img src="img/ship_01.png" alt=""/>
+                        <img src="<?php echo URL; ?>img/ship_01.png" alt=""/>
                     </div>
                     <div class="draggable ship-2" id="2B" rel="0">
-                        <img src="img/ship_01.png" alt=""/>
+                        <img src="<?php echo URL; ?>img/ship_01.png" alt=""/>
                     </div>
                     <div class="draggable ship-2" id="2C" rel="0">
-                        <img src="img/ship_01.png" alt=""/>
+                        <img src="<?php echo URL; ?>img/ship_01.png" alt=""/>
                     </div>
                     <div class="draggable ship-2" id="2D" rel="0">
-                        <img src="img/ship_01.png" alt=""/>
+                        <img src="<?php echo URL; ?>img/ship_01.png" alt=""/>
                     </div>
                 </div>
                 <div class="ship-container">
                     <!--SHIP 3-->
                     <div class="draggable ship-3" id="3A" rel="0">
-                        <img src="img/ship_01.png" alt=""/>
+                        <img src="<?php echo URL; ?>img/ship_01.png" alt=""/>
                     </div>
                     <div class="draggable ship-3" id="3B" rel="0">
-                        <img src="img/ship_01.png" alt=""/>
+                        <img src="<?php echo URL; ?>img/ship_01.png" alt=""/>
                     </div>
                     <div class="draggable ship-3" id="3C" rel="0">
-                        <img src="img/ship_01.png" alt=""/>
+                        <img src="<?php echo URL; ?>img/ship_01.png" alt=""/>
                     </div>
                 </div>
                 <div class="ship-container">
                     <!--SHIP 4-->
                     <div class="draggable ship-4" id="4A" rel="0">
-                        <img src="img/ship_01.png" alt=""/>
+                        <img src="<?php echo URL; ?>img/ship_01.png" alt=""/>
                     </div>
                     <div class="draggable ship-4" id="4B" rel="0">
-                        <img src="img/ship_01.png" alt=""/>
+                        <img src="<?php echo URL; ?>img/ship_01.png" alt=""/>
                     </div>
                 </div>
                 <div class="ship-container">
                     <!--SHIP 5-->
                     <div class="draggable ship-5" id="5A" rel="0">
-                        <img src="img/ship_01.png" alt=""/>
+                        <img src="<?php echo URL; ?>img/ship_01.png" alt=""/>
                     </div>
                 </div>
             </div>
