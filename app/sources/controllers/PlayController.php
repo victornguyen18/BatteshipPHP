@@ -19,12 +19,24 @@ class PlayController extends Controller
         $this->view->render('play/battle');
     }
 
-    function shipSetting(){
+    function shipSetting()
+    {
         $shipName = $_GET['shipName'];
         $row = $_GET['row'];
         $col = $_GET['col'];
         $direction = $_GET['direction'];
-        $this->model->shipSetting(Session::get("player"),$shipName,$row,$col,$direction);
+        $this->model->shipSetting(Session::get("player"), $shipName, $row, $col, $direction);
+    }
+    function chooseMode(){
+        $this->view->render('play/chooseMode');
+    }
+
+    function chooseDifficulty(){
+        $this->view->render('play/chooseDifficulty');
+    }
+
+    function result(){
+        $this->view->render('play/result');
     }
 
     function playGame(){

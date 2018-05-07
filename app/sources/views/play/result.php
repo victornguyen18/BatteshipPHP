@@ -1,12 +1,22 @@
-
-/**
- * Created by PhpStorm.
- * User: nnta.zip
- * Date: 5/6/2018
- * Time: 7:10 PM
- */
-
-    <div class="container">
-        <div class="title">RESULT</div>
-        <a class="btn btn-default next" href="#">Continue</a>
+<div class="container" style="height: 100px; padding: 0;">
+    <img src="<?php echo URL; ?>img/surface.gif" style="height: 100px; width: 100%;" alt="" />
+</div>
+<div class="container">
+    <div class="title">YOU WIN</div>
+    <img src="<?php echo URL; ?>img/victory.jpg" style="width: 80%;height: auto;" alt=""/>
+    <div class="col-lg-12">
+        <a href="#" class="btn btn-select">PLAY AGAIN</a>
     </div>
+</div>
+<div class="container">
+    <div class="title">YOU LOSE</div>
+    <img src="<?php echo URL; ?>img/sunken2.png" style="width: 80%;height: auto;" alt=""/>
+    <div class="col-lg-12">
+        <a href="#" class="btn btn-select">PLAY AGAIN</a>
+    </div>
+</div>
+
+<!--<div class="container">-->
+<!--    <div class="title">RESULT</div>-->
+<!--    <a class="btn btn-default next" href="#">Continue</a>-->
+<!--</div>-->

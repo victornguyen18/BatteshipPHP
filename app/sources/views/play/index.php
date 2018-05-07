@@ -1,6 +1,55 @@
-<script>
+<section id="pslideshow" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#pslideshow" data-slide-to="0" class="active"></li>
+        <li data-target="#pslideshow" data-slide-to="1"></li>
+        <li data-target="#pslideshow" data-slide-to="2"></li>
+    </ol>
 
-</script>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="<?php echo URL; ?>img/slideshow_1.jpg" height="445px">
+            <div class="carousel-caption">
+                <div class="pizza-logo">
+                    <p><img src="<?php echo URL; ?>img/bomb.png"/></p>
+                    <p style="font-size: 30px; margin: 20px;">NEW FEATURE</p>
+                    <a href="" class="btn btn-danger">PLAY NOW</a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img src="<?php echo URL; ?>img/slideshow_2.jpg" height="445px">
+            <div class="carousel-caption">
+                <div class="pizza-logo">
+                    <p><img src="<?php echo URL; ?>img/radar.png"/></p>
+                    <p style="font-size: 30px; margin: 20px;">NEW FEATURE</p>
+                    <a href="" class="btn btn-danger">BUY NOW</a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img src="<?php echo URL; ?>img/slideshow_3.jpg" height="445px">
+            <div class="carousel-caption">
+                <div class="pizza-logo">
+                    <p><img src="<?php echo URL; ?>img/bomb.png"/></p>
+                    <p style="font-size: 30px; margin: 20px;">NEW FEATURE</p>
+                    <a href="" class="btn btn-danger">TRY IT OUT</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#pslideshow" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#pslideshow" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</section>
 <div class="container">
     <div class="title">PLACE YOUR SHIPS</div>
     <div class="frame" id="frame">
@@ -100,43 +149,43 @@
                 <div class="ship-container">
                     <!--SHIP 2-->
                     <div class="draggable ship-2" id="2A" rel="0">
-                        <img src="img/ship_01.png" alt=""/>
+                        <img src="<?php echo URL; ?>img/ship_01.png" alt=""/>
                     </div>
                     <div class="draggable ship-2" id="2B" rel="0">
-                        <img src="img/ship_01.png" alt=""/>
+                        <img src="<?php echo URL; ?>img/ship_01.png" alt=""/>
                     </div>
                     <div class="draggable ship-2" id="2C" rel="0">
-                        <img src="img/ship_01.png" alt=""/>
+                        <img src="<?php echo URL; ?>img/ship_01.png" alt=""/>
                     </div>
                     <div class="draggable ship-2" id="2D" rel="0">
-                        <img src="img/ship_01.png" alt=""/>
+                        <img src="<?php echo URL; ?>img/ship_01.png" alt=""/>
                     </div>
                 </div>
                 <div class="ship-container">
                     <!--SHIP 3-->
                     <div class="draggable ship-3" id="3A" rel="0">
-                        <img src="img/ship_01.png" alt=""/>
+                        <img src="<?php echo URL; ?>img/ship_01.png" alt=""/>
                     </div>
                     <div class="draggable ship-3" id="3B" rel="0">
-                        <img src="img/ship_01.png" alt=""/>
+                        <img src="<?php echo URL; ?>img/ship_01.png" alt=""/>
                     </div>
                     <div class="draggable ship-3" id="3C" rel="0">
-                        <img src="img/ship_01.png" alt=""/>
+                        <img src="<?php echo URL; ?>img/ship_01.png" alt=""/>
                     </div>
                 </div>
                 <div class="ship-container">
                     <!--SHIP 4-->
                     <div class="draggable ship-4" id="4A" rel="0">
-                        <img src="img/ship_01.png" alt=""/>
+                        <img src="<?php echo URL; ?>img/ship_01.png" alt=""/>
                     </div>
                     <div class="draggable ship-4" id="4B" rel="0">
-                        <img src="img/ship_01.png" alt=""/>
+                        <img src="<?php echo URL; ?>img/ship_01.png" alt=""/>
                     </div>
                 </div>
                 <div class="ship-container">
                     <!--SHIP 5-->
                     <div class="draggable ship-5" id="5A" rel="0">
-                        <img src="img/ship_01.png" alt=""/>
+                        <img src="<?php echo URL; ?>img/ship_01.png" alt=""/>
                     </div>
                 </div>
             </div>

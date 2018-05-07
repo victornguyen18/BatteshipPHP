@@ -17,14 +17,17 @@ echo Session::get("messages");
            {
                 var row = parseInt(<?php echo $ship->getRow();?>);
                 var col = parseInt(<?php echo $ship->getCol();?>);
-               $("#p" + row + col).css('background-color', 'green');
+               $("#p" + row + col).css('background', 'url("<?php echo URL; ?>img/h_ship_head.jpg")');
+               $("#p" + row + col).css('background-size', '40px 40px');
                 for (var i = 1; i < parseInt(<?php echo $ship->getLength();?>) - 1; i++) {
                     row = parseInt(<?php echo $ship->getRow();?>);
                     col = parseInt(<?php echo $ship->getCol();?>) + i;
-                   $("#p" + row + col).css('background-color', 'blue');
+                   $("#p" + row + col).css('background', 'url("<?php echo URL; ?>img/h_ship_body.jpg")');
+                   $("#p" + row + col).css('background-size', '40px 40px');
                }
                col++;
-               $("#p" + row + col).css('background-color', 'pink');
+               $("#p" + row + col).css('background', 'url("<?php echo URL; ?>img/h_ship_tail.jpg")');
+               $("#p" + row + col).css('background-size', '40px 40px');
 
            }
        else
@@ -32,14 +35,17 @@ echo Session::get("messages");
                // VERTICAL
                 var row = parseInt(<?php echo $ship->getRow();?>);
                 var col = parseInt(<?php echo $ship->getCol();?>);
-               $("#p" + row + col).css('background-color', 'green');
+               $("#p" + row + col).css('background', 'url("<?php echo URL; ?>img/v_ship_head.jpg")');
+               $("#p" + row + col).css('background-size', '40px 40px');
                 for (var i = 1; i < parseInt(<?php echo $ship->getLength();?>) - 1; i++) {
                     var row = parseInt(<?php echo $ship->getRow();?>) + i;
                     var col = parseInt(<?php echo $ship->getCol();?>);
-                   $("#p" + row + col).css('background-color', 'blue');
+                   $("#p" + row + col).css('background', 'url("<?php echo URL; ?>img/v_ship_body.jpg")');
+                    $("#p" + row + col).css('background-size', '40px 40px');
                }
                row++;
-               $("#p" + row + col).css('background-color', 'pink');
+               $("#p" + row + col).css('background', 'url("<?php echo URL; ?>img/v_ship_tail.jpg")');
+               $("#p" + row + col).css('background-size', '40px 40px');
            }
        });
     </script>
@@ -176,7 +182,7 @@ echo Session::get("messages");
 </script>
 <div class="container" style="text-align: left;">
     <div class="title">GO BATTLE!!</div>
-    <div class="battle-board" style="float: left">
+    <div class="battle-board" style="float: left;">
         <div class="location-number"></div>
         <div class="location-number">0</div>
         <div class="location-number">1</div>
@@ -186,87 +192,14 @@ echo Session::get("messages");
         <div class="location-number">5</div>
         <div class="location-number">6</div>
         <div class="location-number">7</div>
-
-        <div class="location-number">0</div>
-        <div class="battle-location" id="p00"><?=($player->playerGrid->getGrid()[0][0]->hasShip()) ? $player->playerGrid->getGrid()[0][0]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p01"><?=($player->playerGrid->getGrid()[0][1]->hasShip()) ? $player->playerGrid->getGrid()[0][1]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p02"><?=($player->playerGrid->getGrid()[0][2]->hasShip()) ? $player->playerGrid->getGrid()[0][2]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p03"><?=($player->playerGrid->getGrid()[0][3]->hasShip()) ? $player->playerGrid->getGrid()[0][3]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p04"><?=($player->playerGrid->getGrid()[0][4]->hasShip()) ? $player->playerGrid->getGrid()[0][4]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p05"><?=($player->playerGrid->getGrid()[0][5]->hasShip()) ? $player->playerGrid->getGrid()[0][5]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p06"><?=($player->playerGrid->getGrid()[0][6]->hasShip()) ? $player->playerGrid->getGrid()[0][6]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p07"><?=($player->playerGrid->getGrid()[0][7]->hasShip()) ? $player->playerGrid->getGrid()[0][7]->getShip()->getName() : "0"?></div>
-
-        <div class="location-number">1</div>
-        <div class="battle-location" id="p10"><?=($player->playerGrid->getGrid()[1][0]->hasShip()) ? $player->playerGrid->getGrid()[1][0]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p11"><?=($player->playerGrid->getGrid()[1][1]->hasShip()) ? $player->playerGrid->getGrid()[1][1]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p12"><?=($player->playerGrid->getGrid()[1][2]->hasShip()) ? $player->playerGrid->getGrid()[1][2]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p13"><?=($player->playerGrid->getGrid()[1][3]->hasShip()) ? $player->playerGrid->getGrid()[1][3]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p14"><?=($player->playerGrid->getGrid()[1][4]->hasShip()) ? $player->playerGrid->getGrid()[1][4]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p15"><?=($player->playerGrid->getGrid()[1][5]->hasShip()) ? $player->playerGrid->getGrid()[1][5]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p16"><?=($player->playerGrid->getGrid()[1][6]->hasShip()) ? $player->playerGrid->getGrid()[1][6]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p17"><?=($player->playerGrid->getGrid()[1][7]->hasShip()) ? $player->playerGrid->getGrid()[1][7]->getShip()->getName() : "0"?></div>
-
-        <div class="location-number">2</div>
-        <div class="battle-location" id="p20"><?=($player->playerGrid->getGrid()[2][0]->hasShip()) ? $player->playerGrid->getGrid()[2][0]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p21"><?=($player->playerGrid->getGrid()[2][1]->hasShip()) ? $player->playerGrid->getGrid()[2][1]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p22"><?=($player->playerGrid->getGrid()[2][2]->hasShip()) ? $player->playerGrid->getGrid()[2][2]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p23"><?=($player->playerGrid->getGrid()[2][3]->hasShip()) ? $player->playerGrid->getGrid()[2][3]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p24"><?=($player->playerGrid->getGrid()[2][4]->hasShip()) ? $player->playerGrid->getGrid()[2][4]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p25"><?=($player->playerGrid->getGrid()[2][5]->hasShip()) ? $player->playerGrid->getGrid()[2][5]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p26"><?=($player->playerGrid->getGrid()[2][6]->hasShip()) ? $player->playerGrid->getGrid()[2][6]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p27"><?=($player->playerGrid->getGrid()[2][7]->hasShip()) ? $player->playerGrid->getGrid()[2][7]->getShip()->getName() : "0"?></div>
-
-        <div class="location-number">3</div>
-        <div class="battle-location" id="p30"><?=($player->playerGrid->getGrid()[3][0]->hasShip()) ? $player->playerGrid->getGrid()[3][0]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p31"><?=($player->playerGrid->getGrid()[3][1]->hasShip()) ? $player->playerGrid->getGrid()[3][1]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p32"><?=($player->playerGrid->getGrid()[3][2]->hasShip()) ? $player->playerGrid->getGrid()[3][2]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p33"><?=($player->playerGrid->getGrid()[3][3]->hasShip()) ? $player->playerGrid->getGrid()[3][3]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p34"><?=($player->playerGrid->getGrid()[3][4]->hasShip()) ? $player->playerGrid->getGrid()[3][4]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p35"><?=($player->playerGrid->getGrid()[3][5]->hasShip()) ? $player->playerGrid->getGrid()[3][5]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p36"><?=($player->playerGrid->getGrid()[3][6]->hasShip()) ? $player->playerGrid->getGrid()[3][6]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p37"><?=($player->playerGrid->getGrid()[3][7]->hasShip()) ? $player->playerGrid->getGrid()[3][7]->getShip()->getName() : "0"?></div>
-
-        <div class="location-number">4</div>
-        <div class="battle-location" id="p40"><?=($player->playerGrid->getGrid()[4][0]->hasShip()) ? $player->playerGrid->getGrid()[4][0]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p41"><?=($player->playerGrid->getGrid()[4][1]->hasShip()) ? $player->playerGrid->getGrid()[4][1]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p42"><?=($player->playerGrid->getGrid()[4][2]->hasShip()) ? $player->playerGrid->getGrid()[4][2]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p43"><?=($player->playerGrid->getGrid()[4][3]->hasShip()) ? $player->playerGrid->getGrid()[4][3]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p44"><?=($player->playerGrid->getGrid()[4][4]->hasShip()) ? $player->playerGrid->getGrid()[4][4]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p45"><?=($player->playerGrid->getGrid()[4][5]->hasShip()) ? $player->playerGrid->getGrid()[4][5]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p46"><?=($player->playerGrid->getGrid()[4][6]->hasShip()) ? $player->playerGrid->getGrid()[4][6]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p47"><?=($player->playerGrid->getGrid()[4][7]->hasShip()) ? $player->playerGrid->getGrid()[4][7]->getShip()->getName() : "0"?></div>
-
-        <div class="location-number">5</div>
-        <div class="battle-location" id="p50"><?=($player->playerGrid->getGrid()[5][0]->hasShip()) ? $player->playerGrid->getGrid()[5][0]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p51"><?=($player->playerGrid->getGrid()[5][1]->hasShip()) ? $player->playerGrid->getGrid()[5][1]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p52"><?=($player->playerGrid->getGrid()[5][2]->hasShip()) ? $player->playerGrid->getGrid()[5][2]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p53"><?=($player->playerGrid->getGrid()[5][3]->hasShip()) ? $player->playerGrid->getGrid()[5][3]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p54"><?=($player->playerGrid->getGrid()[5][4]->hasShip()) ? $player->playerGrid->getGrid()[5][4]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p55"><?=($player->playerGrid->getGrid()[5][5]->hasShip()) ? $player->playerGrid->getGrid()[5][5]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p56"><?=($player->playerGrid->getGrid()[5][6]->hasShip()) ? $player->playerGrid->getGrid()[5][6]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p57"><?=($player->playerGrid->getGrid()[5][7]->hasShip()) ? $player->playerGrid->getGrid()[5][7]->getShip()->getName() : "0"?></div>
-
-        <div class="location-number">6</div>
-        <div class="battle-location" id="p60"><?=($player->playerGrid->getGrid()[6][0]->hasShip()) ? $player->playerGrid->getGrid()[6][0]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p61"><?=($player->playerGrid->getGrid()[6][1]->hasShip()) ? $player->playerGrid->getGrid()[6][1]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p62"><?=($player->playerGrid->getGrid()[6][2]->hasShip()) ? $player->playerGrid->getGrid()[6][2]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p63"><?=($player->playerGrid->getGrid()[6][3]->hasShip()) ? $player->playerGrid->getGrid()[6][3]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p64"><?=($player->playerGrid->getGrid()[6][4]->hasShip()) ? $player->playerGrid->getGrid()[6][4]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p65"><?=($player->playerGrid->getGrid()[6][5]->hasShip()) ? $player->playerGrid->getGrid()[6][5]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p66"><?=($player->playerGrid->getGrid()[6][6]->hasShip()) ? $player->playerGrid->getGrid()[6][6]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p67"><?=($player->playerGrid->getGrid()[6][7]->hasShip()) ? $player->playerGrid->getGrid()[6][7]->getShip()->getName() : "0"?></div>
-
-        <div class="location-number">7</div>
-        <div class="battle-location" id="p70"><?=($player->playerGrid->getGrid()[7][0]->hasShip()) ? $player->playerGrid->getGrid()[7][0]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p71"><?=($player->playerGrid->getGrid()[7][1]->hasShip()) ? $player->playerGrid->getGrid()[7][1]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p72"><?=($player->playerGrid->getGrid()[7][2]->hasShip()) ? $player->playerGrid->getGrid()[7][2]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p73"><?=($player->playerGrid->getGrid()[7][3]->hasShip()) ? $player->playerGrid->getGrid()[7][3]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p74"><?=($player->playerGrid->getGrid()[7][4]->hasShip()) ? $player->playerGrid->getGrid()[7][4]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p75"><?=($player->playerGrid->getGrid()[7][5]->hasShip()) ? $player->playerGrid->getGrid()[7][5]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p76"><?=($player->playerGrid->getGrid()[7][6]->hasShip()) ? $player->playerGrid->getGrid()[7][6]->getShip()->getName() : "0"?></div>
-        <div class="battle-location" id="p77"><?=($player->playerGrid->getGrid()[7][7]->hasShip()) ? $player->playerGrid->getGrid()[7][7]->getShip()->getName() : "0"?></div>
+        <?php  for ($row = 0; $row < Grid::$NUM_ROWS; $row++): ?>
+            <div class="location-number"><?=$row;?></div>
+            <?php for ($col = 0; $col < Grid::$NUM_COLS; $col++):?>
+                <div class="battle-location" id="p<?=$row;?><?=$col;?>" ><?=($player->playerGrid->getGrid()[$row][$col]->hasShip()) ? $player->playerGrid->getGrid()[$row][$col]->getShip()->getName() : "0"?></div>
+            <?php endfor;?>
+        <?php endfor;?>
     </div>
+
     <div class="battle-board" style="float: right;">
         <div class="location-number"></div>
         <div class="location-number">0</div>
@@ -277,85 +210,12 @@ echo Session::get("messages");
         <div class="location-number">5</div>
         <div class="location-number">6</div>
         <div class="location-number">7</div>
+        <?php  for ($row = 0; $row < Grid::$NUM_ROWS; $row++): ?>
+            <div class="location-number"><?=$row;?></div>
+            <?php for ($col = 0; $col < Grid::$NUM_COLS; $col++):?>
+                <div class="battle-location" id="c<?=$row;?><?=$col;?>"></div>
+            <?php endfor;?>
+        <?php endfor;?>
 
-        <div class="location-number">0</div>
-        <div class="battle-location" id="c00"></div>
-        <div class="battle-location" id="c01"></div>
-        <div class="battle-location" id="c02"></div>
-        <div class="battle-location" id="c03"></div>
-        <div class="battle-location" id="c04"></div>
-        <div class="battle-location" id="c05"></div>
-        <div class="battle-location" id="c06"></div>
-        <div class="battle-location" id="c07"></div>
-
-        <div class="location-number">1</div>
-        <div class="battle-location" id="c10"></div>
-        <div class="battle-location" id="c11"></div>
-        <div class="battle-location" id="c12"></div>
-        <div class="battle-location" id="c13"></div>
-        <div class="battle-location" id="c14"></div>
-        <div class="battle-location" id="c15"></div>
-        <div class="battle-location" id="c16"></div>
-        <div class="battle-location" id="c17"></div>
-
-        <div class="location-number">2</div>
-        <div class="battle-location" id="c20"></div>
-        <div class="battle-location" id="c21"></div>
-        <div class="battle-location" id="c22"></div>
-        <div class="battle-location" id="c23"></div>
-        <div class="battle-location" id="c24"></div>
-        <div class="battle-location" id="c25"></div>
-        <div class="battle-location" id="c26"></div>
-        <div class="battle-location" id="c27"></div>
-
-        <div class="location-number">3</div>
-        <div class="battle-location" id="c30"></div>
-        <div class="battle-location" id="c31"></div>
-        <div class="battle-location" id="c32"></div>
-        <div class="battle-location" id="c33"></div>
-        <div class="battle-location" id="c34"></div>
-        <div class="battle-location" id="c35"></div>
-        <div class="battle-location" id="c36"></div>
-        <div class="battle-location" id="c37"></div>
-
-        <div class="location-number">4</div>
-        <div class="battle-location" id="c40"></div>
-        <div class="battle-location" id="c41"></div>
-        <div class="battle-location" id="c42"></div>
-        <div class="battle-location" id="c43"></div>
-        <div class="battle-location" id="c44"></div>
-        <div class="battle-location" id="c45"></div>
-        <div class="battle-location" id="c46"></div>
-        <div class="battle-location" id="c47"></div>
-
-        <div class="location-number">5</div>
-        <div class="battle-location" id="50"></div>
-        <div class="battle-location" id="c51"></div>
-        <div class="battle-location" id="c52"></div>
-        <div class="battle-location" id="c53"></div>
-        <div class="battle-location" id="c54"></div>
-        <div class="battle-location" id="c55"></div>
-        <div class="battle-location" id="c56"></div>
-        <div class="battle-location" id="c57"></div>
-
-        <div class="location-number">6</div>
-        <div class="battle-location" id="c60"></div>
-        <div class="battle-location" id="c61"></div>
-        <div class="battle-location" id="c62"></div>
-        <div class="battle-location" id="c63"></div>
-        <div class="battle-location" id="c64"></div>
-        <div class="battle-location" id="c65"></div>
-        <div class="battle-location" id="c66"></div>
-        <div class="battle-location" id="c67"></div>
-
-        <div class="location-number">7</div>
-        <div class="battle-location" id="c70"></div>
-        <div class="battle-location" id="c71"></div>
-        <div class="battle-location" id="c72"></div>
-        <div class="battle-location" id="c73"></div>
-        <div class="battle-location" id="c74"></div>
-        <div class="battle-location" id="c75"></div>
-        <div class="battle-location" id="c76"></div>
-        <div class="battle-location" id="c77"></div>
     </div>
 </div>
