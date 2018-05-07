@@ -168,6 +168,60 @@ function handleDrop(event, ui) {
     };
 };
 $(function () {
+    $('.draggableWeapon').draggable({
+        cursor: 'move',
+        snap: true,
+        helper: 'clone',
+        start: function (event, ui) {
+            $(this).draggable("option", "cursorAt", {
+                left: Math.floor(ui.helper.width() / 2),
+                top: Math.floor(ui.helper.height() / 2)
+            });
+        }
+    });
+});
+$(function () {
+    $('.battle-location').droppable({
+        accept: ".draggableWeapon",
+        drop: handleDropWeapon
+    });
+});
+var rowcolWeapon;
+function handleDropWeapon(event, ui) {
+    ui.draggable.position({
+        of: $(this),
+        my: 'left top',
+        at: 'left top'
+    });
+    ui.draggable.draggable('option', 'revert', false);
+    rowcolWeapon = $(this).attr('rel');
+    var rowW = parseInt(rowcolWeapon.split("")[1]);
+    var colW = parseInt(rowcolWeapon.split("")[2]);
+    alert("rowW: " + rowW);
+    alert("colW: " + colW);
+}
+
+$('.radar').mousedown(function(){
+    $(this).css({
+        'background-color' : 'rgba(255,255,255,0.5)',
+        'width' : '119px',
+        'height' : '119px'
+    });
+});
+
+$('.bomb').mousedown(function(){
+    $(this).children('img').css({
+        'width' : '79px',
+        'height' : '79px'
+    });
+    $(this).css({
+        'background-color' : 'rgba(0,0,0,0.5)',
+        'width' : '159px',
+        'height' : '79px'
+    });
+});
+
+$(function () {
     $(".continue-btn").click(function () {
         if(Object.keys(data).length == 10){
             for (var value in data){

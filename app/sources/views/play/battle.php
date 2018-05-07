@@ -204,7 +204,22 @@ foreach ($player->getShips() as $ship){
                 <div class="battle-location" id="c<?=$row;?><?=$col;?>"></div>
             <?php endfor;?>
         <?php endfor;?>
-
+    </div>
+    <div class="col-lg-12">
+        <p>Your weapons:</p>
+        <div class="weapons-container">
+            <div class="draggableWeapon radar">
+                <img src="public/img/radar.png" alt="">
+            </div>
+        </div>
+        <div class="weapons-container">
+            <div class="draggableWeapon bomb">
+                <img src="public/img/bomb.png" alt="">
+            </div>
+            <div class="draggableWeapon bomb">
+                <img src="public/img/bomb.png" alt="">
+            </div>
+        </div>
     </div>
     <a href="<?php echo URL;?>/play/result" class="btn btn-select"></a>
 </div>
