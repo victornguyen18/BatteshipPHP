@@ -167,6 +167,9 @@ function handleDrop(event, ui) {
         "direction": shipDirection
     };
 };
+
+// WEAPONS
+
 $(function () {
     $('.draggableWeapon').draggable({
         cursor: 'move',
@@ -180,12 +183,14 @@ $(function () {
         }
     });
 });
+
 $(function () {
     $('.battle-location').droppable({
         accept: ".draggableWeapon",
         drop: handleDropWeapon
     });
 });
+
 var rowcolWeapon;
 function handleDropWeapon(event, ui) {
     ui.draggable.position({
@@ -201,24 +206,27 @@ function handleDropWeapon(event, ui) {
     alert("colW: " + colW);
 }
 
-$('.radar').mousedown(function(){
-    $(this).css({
-        'background-color' : 'rgba(255,255,255,0.5)',
-        'width' : '119px',
-        'height' : '119px'
+$(function () {
+    $('.radar').mousedown(function(){
+        $(this).css({
+            'background-color' : 'rgba(255,255,255,0.5)',
+            'width' : '119px',
+            'height' : '119px'
+        });
     });
-});
 
-$('.bomb').mousedown(function(){
-    $(this).children('img').css({
-        'width' : '79px',
-        'height' : '79px'
+    $('.bomb').mousedown(function(){
+        $(this).children('img').css({
+            'width' : '79px',
+            'height' : '79px'
+        });
+        $(this).css({
+            'background-color' : 'rgba(0,0,0,0.5)',
+            'width' : '159px',
+            'height' : '79px'
+        });
     });
-    $(this).css({
-        'background-color' : 'rgba(0,0,0,0.5)',
-        'width' : '159px',
-        'height' : '79px'
-    });
+
 });
 
 $(function () {

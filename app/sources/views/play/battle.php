@@ -170,55 +170,58 @@ foreach ($player->getShips() as $ship){
 </script>
 <div class="container" style="text-align: left;">
     <div class="title">GO BATTLE!!</div>
-    <div class="battle-board" style="float: left;">
-        <div class="location-number"></div>
-        <div class="location-number">0</div>
-        <div class="location-number">1</div>
-        <div class="location-number">2</div>
-        <div class="location-number">3</div>
-        <div class="location-number">4</div>
-        <div class="location-number">5</div>
-        <div class="location-number">6</div>
-        <div class="location-number">7</div>
-        <?php  for ($row = 0; $row < Grid::$NUM_ROWS; $row++): ?>
-            <div class="location-number"><?=$row;?></div>
-            <?php for ($col = 0; $col < Grid::$NUM_COLS; $col++):?>
-                <div class="battle-location" id="p<?=$row;?><?=$col;?>" ><?=($player->playerGrid->getGrid()[$row][$col]->hasShip()) ? $player->playerGrid->getGrid()[$row][$col]->getShip()->getName() : "0"?></div>
+    <div class="row">
+        <div class="col-lg-6 col-md-12 battle-board" style="float: left;">
+            <div class="location-number"></div>
+            <div class="location-number">0</div>
+            <div class="location-number">1</div>
+            <div class="location-number">2</div>
+            <div class="location-number">3</div>
+            <div class="location-number">4</div>
+            <div class="location-number">5</div>
+            <div class="location-number">6</div>
+            <div class="location-number">7</div>
+            <?php  for ($row = 0; $row < Grid::$NUM_ROWS; $row++): ?>
+                <div class="location-number"><?=$row;?></div>
+                <?php for ($col = 0; $col < Grid::$NUM_COLS; $col++):?>
+                    <div class="battle-location" id="p<?=$row;?><?=$col;?>" ><?=($player->playerGrid->getGrid()[$row][$col]->hasShip()) ? $player->playerGrid->getGrid()[$row][$col]->getShip()->getName() : "0"?></div>
+                <?php endfor;?>
             <?php endfor;?>
-        <?php endfor;?>
+        </div>
+
+        <div class="col-lg-6 col-md-12 battle-board" style="float: right;">
+            <div class="location-number"></div>
+            <div class="location-number">0</div>
+            <div class="location-number">1</div>
+            <div class="location-number">2</div>
+            <div class="location-number">3</div>
+            <div class="location-number">4</div>
+            <div class="location-number">5</div>
+            <div class="location-number">6</div>
+            <div class="location-number">7</div>
+            <?php  for ($row = 0; $row < Grid::$NUM_ROWS; $row++): ?>
+                <div class="location-number"><?=$row;?></div>
+                <?php for ($col = 0; $col < Grid::$NUM_COLS; $col++):?>
+                    <div class="battle-location" id="c<?=$row;?><?=$col;?>"></div>
+                <?php endfor;?>
+            <?php endfor;?>
+        </div>
+        <div class="col-lg-12" style="height: 200px;">
+            <p>Your weapons:</p>
+            <div class="weapons-container">
+                <div class="draggableWeapon radar">
+                    <img src="<?php echo URL; ?>img/radar.png" alt="">
+                </div>
+            </div>
+            <div class="weapons-container">
+                <div class="draggableWeapon bomb">
+                    <img src="<?php echo URL; ?>img/bomb.png" alt="">
+                </div>
+                <div class="draggableWeapon bomb">
+                    <img src="<?php echo URL; ?>img/bomb.png" alt="">
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="battle-board" style="float: right;">
-        <div class="location-number"></div>
-        <div class="location-number">0</div>
-        <div class="location-number">1</div>
-        <div class="location-number">2</div>
-        <div class="location-number">3</div>
-        <div class="location-number">4</div>
-        <div class="location-number">5</div>
-        <div class="location-number">6</div>
-        <div class="location-number">7</div>
-        <?php  for ($row = 0; $row < Grid::$NUM_ROWS; $row++): ?>
-            <div class="location-number"><?=$row;?></div>
-            <?php for ($col = 0; $col < Grid::$NUM_COLS; $col++):?>
-                <div class="battle-location" id="c<?=$row;?><?=$col;?>"></div>
-            <?php endfor;?>
-        <?php endfor;?>
-    </div>
-    <div class="col-lg-12">
-        <p>Your weapons:</p>
-        <div class="weapons-container">
-            <div class="draggableWeapon radar">
-                <img src="<?php echo URL;?>img/radar.png" alt="">
-            </div>
-        </div>
-        <div class="weapons-container">
-            <div class="draggableWeapon bomb">
-                <img src="<?php echo URL;?>/imgbomb.png" alt="">
-            </div>
-            <div class="draggableWeapon bomb">
-                <img src="<?php echo URL;?>img/bomb.png" alt="">
-            </div>
-        </div>
-    </div>
 </div>
