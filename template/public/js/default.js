@@ -155,6 +155,8 @@ function handleDrop(event, ui) {
     ui.draggable.draggable('option', 'revert', false);
 }
 
+// WEAPONS
+
 $(function () {
     $('.draggableWeapon').draggable({
         cursor: 'move',
