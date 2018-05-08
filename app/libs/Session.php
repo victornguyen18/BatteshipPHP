@@ -43,7 +43,10 @@ class Session
         }
     }
     public static function destroyAll(){
-        session_start();
+//        foreach ($_SESSION as $key => $value){
+//            $_SESSION[$key] = null;
+//            unset($_SESSION[$key]);
+//        }
         session_destroy();
     }
 }

@@ -177,8 +177,8 @@ $(function () {
         helper: 'clone',
         start: function (event, ui) {
             $(this).draggable("option", "cursorAt", {
-                left: Math.floor(ui.helper.width() / 2),
-                top: Math.floor(ui.helper.height() / 2)
+                left: 20,
+                top: 20
             });
         }
     });
@@ -193,15 +193,30 @@ $(function () {
 
 var rowcolWeapon;
 function handleDropWeapon(event, ui) {
-    ui.draggable.position({
-        of: $(this),
-        my: 'left top',
-        at: 'left top'
-    });
-    ui.draggable.draggable('option', 'revert', false);
-    rowcolWeapon = $(this).attr('rel');
+
+    if(ui.draggable.prop("class").match("radar")){
+        ui.draggable.position({
+            of: $(this),
+            my: 'left-40 top-40',
+            at: 'left top'
+        });
+        ui.draggable.draggable('option', 'revert', false);
+        console.log("radar");
+    }
+    else if (ui.draggable.prop("class").match("bomb")){
+        ui.draggable.position({
+            of: $(this),
+            my: 'left-40 top',
+            at: 'left top'
+        });
+        ui.draggable.draggable('option', 'revert', false);
+        console.log("bomb");
+
+    }
+    rowcolWeapon = $(this).prop('id');
     var rowW = parseInt(rowcolWeapon.split("")[1]);
     var colW = parseInt(rowcolWeapon.split("")[2]);
+    $.get()
     alert("rowW: " + rowW);
     alert("colW: " + colW);
 }

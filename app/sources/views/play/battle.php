@@ -4,10 +4,10 @@
 <?php
 $player = Session::get("player");
 $computer = Session::get("computer");
-foreach ($player->getShips() as $ship){
-    echo "</br>";
-    print_r($ship);
-}
+//foreach ($player->getShips() as $ship){
+//    echo "</br>";
+//    print_r($ship);
+//}
 ?>
 
 <?php foreach ($player->getShips() as $ship) : ?>
@@ -58,29 +58,34 @@ foreach ($player->getShips() as $ship){
             {
                 var row = parseInt(<?php echo $ship->getRow();?>);
                 var col = parseInt(<?php echo $ship->getCol();?>);
-                $("#c" + row + col).css('background-color', 'green');
+                $("#c" + row + col).css('background', 'url("<?php echo URL; ?>img/h_ship_head.png")');
+                $("#c" + row + col).css('background-size', '40px 40px');
                 for (var i = 1; i < parseInt(<?php echo $ship->getLength();?>) - 1; i++) {
                     row = parseInt(<?php echo $ship->getRow();?>);
                     col = parseInt(<?php echo $ship->getCol();?>) + i;
-                    $("#c" + row + col).css('background-color', 'blue');
+                    $("#c" + row + col).css('background', 'url("<?php echo URL; ?>img/h_ship_body.jpg")');
+                    $("#c" + row + col).css('background-size', '40px 40px');
                 }
                 col++;
-                $("#c" + row + col).css('background-color', 'pink');
-
+                $("#c" + row + col).css('background', 'url("<?php echo URL; ?>img/h_ship_tail.png")');
+                $("#c" + row + col).css('background-size', '40px 40px');
             }
         else
             {
                 // VERTICAL
                 var row = parseInt(<?php echo $ship->getRow();?>);
                 var col = parseInt(<?php echo $ship->getCol();?>);
-                $("#c" + row + col).css('background-color', 'green');
+                $("#c" + row + col).css('background', 'url("<?php echo URL; ?>img/v_ship_head.png")');
+                $("#c" + row + col).css('background-size', '40px 40px');
                 for (var i = 1; i < parseInt(<?php echo $ship->getLength();?>) - 1; i++) {
                     var row = parseInt(<?php echo $ship->getRow();?>) + i;
                     var col = parseInt(<?php echo $ship->getCol();?>);
-                    $("#c" + row + col).css('background-color', 'blue');
+                    $("#c" + row + col).css('background', 'url("<?php echo URL; ?>img/v_ship_body.jpg")');
+                    $("#c" + row + col).css('background-size', '40px 40px');
                 }
                 row++;
-                $("#c" + row + col).css('background-color', 'pink');
+                $("#c" + row + col).css('background', 'url("<?php echo URL; ?>img/v_ship_tail.png")');
+                $("#c" + row + col).css('background-size', '40px 40px');
             }
         });
     </script>
@@ -105,62 +110,98 @@ foreach ($player->getShips() as $ship){
                     }
                     else{
                         if(o.status == 1){ // HIT
-                            $("#c"+o.row+o.col).css('background-color','red');
+                            $("#c"+o.row+o.col).css({
+                                'background' : 'url("<?= URL; ?>img/flame.gif")',
+                                'background-size' : '40px 40px'
+                            });
                             if(o.isDestroyed == 1){
                                 if(o.destroyedShipDIRECTION == 0){ // HORIZONTAL
                                     for(var i = 0; i < o.destroyedShipLENGTH; i++){
                                         var row = parseInt(o.destroyedShipROW);
                                         var col = parseInt(o.destroyedShipCOL)+i;
-                                        $("#c"+row+col).css('background-color','black');
+                                        $("#c"+row+col).css({
+                                            'background' : 'url("<?= URL; ?>img/skull.png")',
+                                            'background-size' : '40px 40px',
+                                            'filter' : 'grayscale(100%)',
+                                            '-webkit-filter' :'grayscale(100%)'
+                                        });
                                     }
                                 }
                                 else {                          // VERTICAL
                                     for(var i = 0; i < o.destroyedShipLENGTH; i++){
                                         var row = parseInt(o.destroyedShipROW)+i;
                                         var col = parseInt(o.destroyedShipCOL);
-                                        $("#c"+row+col).css('background-color','black');
+                                        $("#c"+row+col).css({
+                                            'background' : 'url("<?= URL; ?>img/skull.png")',
+                                            'background-size' : '40px 40px',
+                                            'filter' : 'grayscale(100%)',
+                                            '-webkit-filter' :'grayscale(100%)'
+                                        });
                                     }
                                 }
                             }
                         }
                         else                // MISS
                         {
-                            $("#c"+o.row+o.col).css('background-color','gray');
+                            $("#c"+o.row+o.col).css({
+                                'background' : 'url("<?= URL; ?>img/miss.jpg")',
+                                'background-size' : '40px 40px'
+                            });
                         }
                         if(o.result == 1){
                             alert("CONGRATULATION!! You win.");
                             $(".title").html("YOU WIN");
+                            window.location.href = "<?= URL;?>play/result";
                         }
                         // AFTER PLAYER MAKE A GUESS, COMPUTER WILL ALSO MAKE A GUESS
-                        $.get('/play/playGame', {"player":"computer"}, function (o) {
-                            if(o.status == 1){ // HIT
-                                $("#p"+o.row+o.col).css('background-color','red');
-                                if(o.isDestroyed == 1){
-                                    if(o.destroyedShipDIRECTION == 0){ // HORIZONTAL
-                                        for(var i = 0; i < o.destroyedShipLENGTH; i++){
-                                            var row = parseInt(o.destroyedShipROW);
-                                            var col = parseInt(o.destroyedShipCOL)+i;
-                                            $("#p"+row+col).css('background-color','black');
+                        if(o.result == 0){
+                            $.get('/play/playGame', {"player":"computer"}, function (o) {
+                                if(o.status == 1){ // HIT
+                                    $("#p"+o.row+o.col).css({
+                                        'background' : 'url("<?= URL; ?>img/flame.gif")',
+                                        'background-size' : '40px 40px'
+                                    });
+                                    if(o.isDestroyed == 1){
+                                        if(o.destroyedShipDIRECTION == 0){ // HORIZONTAL
+                                            for(var i = 0; i < o.destroyedShipLENGTH; i++){
+                                                var row = parseInt(o.destroyedShipROW);
+                                                var col = parseInt(o.destroyedShipCOL)+i;
+                                                $("#p"+row+col).css({
+                                                    'background' : 'url("<?= URL; ?>img/skull.png")',
+                                                    'background-size' : '40px 40px',
+                                                    'filter' : 'grayscale(100%)',
+                                                    '-webkit-filter' :'grayscale(100%)'
+                                                });
+                                            }
                                         }
-                                    }
-                                    else {                          // VERTICAL
-                                        for(var i = 0; i < o.destroyedShipLENGTH; i++){
-                                            var row = parseInt(o.destroyedShipROW)+i;
-                                            var col = parseInt(o.destroyedShipCOL);
-                                            $("#p"+row+col).css('background-color','black');
+                                        else {                          // VERTICAL
+                                            for(var i = 0; i < o.destroyedShipLENGTH; i++){
+                                                var row = parseInt(o.destroyedShipROW)+i;
+                                                var col = parseInt(o.destroyedShipCOL);
+                                                $("#p"+row+col).css({
+                                                    'background' : 'url("<?= URL; ?>img/skull.png")',
+                                                    'background-size' : '40px 40px',
+                                                    'filter' : 'grayscale(100%)',
+                                                    '-webkit-filter' :'grayscale(100%)'
+                                                });
+                                            }
                                         }
                                     }
                                 }
-                            }
-                            else                // MISS
-                            {
-                                $("#p"+o.row+o.col).css('background-color','gray');
-                            }
-                            if(o.result == 1){
-                                alert("TOO BAD!! You loose.");
-                                $(".title").html("YOU LOOSE");
-                            }
-                        }, "json");
+                                else                // MISS
+                                {
+                                    $("#p"+o.row+o.col).css({
+                                        'background' : 'url("<?= URL; ?>img/miss.jpg")',
+                                        'background-size' : '40px 40px'
+                                    });
+                                }
+                                if(o.result == 1){
+                                    alert("TOO BAD!! You loose.");
+                                    $(".title").html("YOU LOOSE");
+                                    window.location.href = "<?= URL;?>play/result";
+                                }
+                            }, "json");
+                        }
                     }
 
                 },"json");
@@ -184,7 +225,8 @@ foreach ($player->getShips() as $ship){
             <?php  for ($row = 0; $row < Grid::$NUM_ROWS; $row++): ?>
                 <div class="location-number"><?=$row;?></div>
                 <?php for ($col = 0; $col < Grid::$NUM_COLS; $col++):?>
-                    <div class="battle-location" id="p<?=$row;?><?=$col;?>" ><?=($player->playerGrid->getGrid()[$row][$col]->hasShip()) ? $player->playerGrid->getGrid()[$row][$col]->getShip()->getName() : "0"?></div>
+                    <?php //($player->playerGrid->getGrid()[$row][$col]->hasShip()) ? $player->playerGrid->getGrid()[$row][$col]->getShip()->getName() : "0"?>
+                    <div class="battle-location" id="p<?=$row;?><?=$col;?>"></div>
                 <?php endfor;?>
             <?php endfor;?>
         </div>
@@ -206,7 +248,8 @@ foreach ($player->getShips() as $ship){
                 <?php endfor;?>
             <?php endfor;?>
         </div>
-        <div class="col-lg-12" style="height: 200px;">
+        <?php if(Session::get("mode") == "advanced"): ?>
+        <div class="col-lg-12 weapons-div" style="height: 200px;">
             <p>Your weapons:</p>
             <div class="weapons-container">
                 <div class="draggableWeapon radar">
@@ -222,6 +265,7 @@ foreach ($player->getShips() as $ship){
                 </div>
             </div>
         </div>
+        <?php endif; ?>
     </div>
 
 </div>

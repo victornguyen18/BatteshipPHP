@@ -359,7 +359,6 @@ class Play extends Model
             Session::set("result", -1);
             $data['result'] = 0;
         }
-
         echo json_encode($data);
         Session::set("player", $player);
         Session::set("computer", $opponent);

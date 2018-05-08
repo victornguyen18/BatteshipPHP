@@ -63,8 +63,8 @@ class PlayController extends Controller
 
         Session::set("player", self::$player);
         Session::set("computer", self::$computer);
-        Session::set("result", -1);
         Session::set("count", 0);
+        Session::set("result", -1);
         Session::set("shipMemory", self::$shipMemory);
         Session::set("onFocus", self::$onFocus);
         Session::set("locationMemory", self::$locationMemory);

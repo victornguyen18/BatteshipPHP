@@ -15,6 +15,9 @@ class HomepageController extends Controller
 
     function index()
     {
+        $player = Session::get('player');
+        Session::destroyAll();
+        Session::set('player', $player);
         $this->view->render('homepage/index');
     }
 

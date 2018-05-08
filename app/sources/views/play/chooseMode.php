@@ -12,3 +12,11 @@
         </div>
     </div>
 </div>
+<script>
+    $(function () {
+        $("#advanced").click(function () {
+            alert("Will be available soon!");
+            return false;
+        });
+    })
+</script>
