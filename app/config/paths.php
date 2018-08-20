@@ -6,7 +6,7 @@
  * Time: 03:41 PM
  */ 
 define('ADMIN_THEME','http://local.deal.vn/AdminLTE/');
-define('SITE_THEME','site');
+define('SITE_THEME','sites');
 define("URL","http://".$_SERVER['HTTP_HOST']."/");
 define("STATIC_URL","http://".$_SERVER['HTTP_HOST']."/");
 define("URL_SITE","http://".$_SERVER['HTTP_HOST']."/");
